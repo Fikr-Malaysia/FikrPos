@@ -16,14 +16,11 @@ namespace FikrPos
         {
             InitializeComponent();
             Features.StartupPath = Application.StartupPath;
+            DataManager.getInstance().initData();
         }
 
         private void StartupForm_Load(object sender, EventArgs e)
-        {
-            if (Features.getInstance().getDataConnection() != null)
-            {
-                MessageBox.Show("Success!");
-            }
+        {   
         }
     }
 }

@@ -14,7 +14,7 @@ namespace FikrPos.Library
         private static Features instance = null;
         public static string StartupPath;
 
-        public Features()
+        private Features()
         {
             RegistrySettings.loadValues();
             resetConnection();

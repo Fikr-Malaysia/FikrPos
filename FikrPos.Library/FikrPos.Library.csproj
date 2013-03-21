@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataManager.cs" />
     <Compile Include="Features.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="helper\Cryptho.cs" />
