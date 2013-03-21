@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FikrPos.Client.Properties {
+namespace FikrPos.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -30,6 +30,16 @@ namespace FikrPos.Client.Properties {
         public string FikrPosClientConnectionString {
             get {
                 return ((string)(this["FikrPosClientConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=COREI3\\sqlexpress;Initial Catalog=FikrPos;Integrated Security=True")]
+        public string FikrPosConnectionString {
+            get {
+                return ((string)(this["FikrPosConnectionString"]));
             }
         }
     }

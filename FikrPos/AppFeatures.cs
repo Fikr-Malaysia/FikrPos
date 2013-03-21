@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace FikrPos.Library
+namespace FikrPos
 {
     public class AppFeatures
     {

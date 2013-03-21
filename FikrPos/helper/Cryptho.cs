@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace FikrPos.Library
+namespace FikrPos
 {
     public static class Cryptho
     {

@@ -8,8 +8,8 @@
     <ProjectGuid>{58F2847E-9FD2-4864-AA05-E5F93BDA0FC0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FikrPos.Client</RootNamespace>
-    <AssemblyName>FikrPos.Client</AssemblyName>
+    <RootNamespace>FikrPos</RootNamespace>
+    <AssemblyName>FikrPos</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -54,6 +54,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -64,13 +65,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppFeatures.cs" />
     <Compile Include="ApplicationStartup.cs" />
+    <Compile Include="AppStates.cs" />
+    <Compile Include="DataManager.cs" />
+    <Compile Include="FikrPos.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FikrPos.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AdministratorPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AdministratorPassword.Designer.cs">
+      <DependentUpon>AdministratorPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Settings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="helper\Cryptho.cs" />
+    <Compile Include="helper\ModifyRegistry.cs" />
+    <Compile Include="RegistrySettings.cs" />
     <Compile Include="StartupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +97,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="FikrPos.dbml.layout">
+      <DependentUpon>FikrPos.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="Forms\AdministratorPassword.resx">
+      <DependentUpon>AdministratorPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
@@ -97,6 +121,11 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="app.manifest" />
+    <None Include="FikrPos.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>FikrPos.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -106,12 +135,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FikrPos.Library\FikrPos.Library.csproj">
-      <Project>{C7BCCB96-6F5D-49AC-84AD-B97E76FB8698}</Project>
-      <Name>FikrPos.Library</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -139,6 +162,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

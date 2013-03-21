@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FikrPos" Class="FikrPosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=COREI3\sqlexpress;Initial Catalog=FikrPos;Integrated Security=True" SettingsObjectName="FikrPos.Properties.Settings" SettingsPropertyName="FikrPosConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.AppUser" Member="AppUsers">
+    <Type Name="AppUser">
+      <Column Name="username" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="isadmin" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AppInfo" Member="AppInfos">
+    <Type Name="AppInfo">
+      <Column Name="IsInit" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Collections;
 using System.Data.SqlClient;
 
-namespace FikrPos.Library
+namespace FikrPos
 {
     public class DataManager
     {
@@ -28,6 +28,8 @@ namespace FikrPos.Library
             FikrPosDataContext db = new FikrPosDataContext();
             var appInfo = db.AppInfos.Single();
             AppStates.IsInit = appInfo.IsInit == 1;
+
+            
         }
     }
 }

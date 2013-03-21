@@ -1,4 +1,4 @@
-﻿namespace FikrPos.Client.Forms
+﻿namespace FikrPos.Forms
 {
     partial class Settings
     {

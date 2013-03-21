@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using FikrPos.Library;
+using FikrPos.Client.Forms;
 
 namespace FikrPos
 {
@@ -15,14 +15,28 @@ namespace FikrPos
         public StartupForm()
         {
             InitializeComponent();
+            Visible = false;
+
             AppFeatures.StartupPath = Application.StartupPath;
             DataManager.getInstance().initData();
-
             if (AppStates.IsInit)
             {
-                Program.BeginDataInitializationProcess();
+                AdministratorPassword admPwd = new AdministratorPassword();
+                admPwd.ShowDialog();
+
+                FikrPosDataContext db = new FikrPosDataContext();
+                db.ExecuteCommand("Delete from AppUser");
+                AppUser root = new AppUser();
+                root.username = "root";
+                root.password = Cryptho.Encrypt(admPwd.AdminPassword);
+                root.isadmin = 1;
+                db.AppUsers.InsertOnSubmit(root);
+
+                AppInfo appInfo = db.AppInfos.SingleOrDefault();
+                appInfo.IsInit = 0;
+
+                db.SubmitChanges();
             }
-            Visible = false;
         }
 
         private void StartupForm_Load(object sender, EventArgs e)

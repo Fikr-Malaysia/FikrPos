@@ -6,9 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using FikrPos.Library;
 
-namespace FikrPos.Client.Forms
+namespace FikrPos.Forms
 {
     public partial class Settings : Form
     {

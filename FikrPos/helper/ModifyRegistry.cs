@@ -17,11 +17,10 @@
 using System;
 // it's required for reading/writing into the registry:
 using Microsoft.Win32;
-using System.Diagnostics;
-using FikrPos.Library;      
+using System.Diagnostics;     
 // and for the MessageBox function:
 
-namespace FikrPos.Library
+namespace FikrPos
 {
 	/// <summary>
 	/// An useful class to read/write/delete/count registry keys

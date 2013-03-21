@@ -20,7 +20,7 @@ namespace FikrPos
 
         public static void BeginDataInitializationProcess()
         {
-            MessageBox.Show("Init data");
+            
         }
     }
 }

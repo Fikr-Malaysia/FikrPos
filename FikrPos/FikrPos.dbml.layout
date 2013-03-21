@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="FikrPos">
+  <DataContextMoniker Name="/FikrPosDataContext" />
+  <nestedChildShapes>
+    <classShape Id="8667c51e-183e-4b66-9033-c6e5cd764d07" absoluteBounds="2, 2.25, 2, 1.3862939453125">
+      <DataClassMoniker Name="/FikrPosDataContext/AppUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="95de8e35-22e9-4c31-abbe-60edff76ae35" absoluteBounds="2.015, 2.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e7506748-99e9-4bd6-8fe1-5380f790d764" absoluteBounds="1.25, 1.25, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/FikrPosDataContext/AppInfo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d56b7b31-ca91-416a-b0c8-a7439e2d644a" absoluteBounds="1.2650000000000001, 1.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
