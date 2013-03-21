@@ -41,9 +41,9 @@ namespace FikrPos.Library
             windowsLogin = ((int)reg.Read("windowsLogin", 1) == 1);
             serverLogin = ((int)reg.Read("serverLogin", 1) == 1);
             dbType = (string)reg.Read("dbType", "MSSQL");
-            SqlHost = (string)reg.Read("SqlHost", "localhost");
-            SqlDatabase = (string)reg.Read("SqlDatabase", "email2sms");
-            SqlUsername = (string)reg.Read("SqlUsername", "root");
+            SqlHost = (string)reg.Read("SqlHost", "localhost\\sqlexpress");
+            SqlDatabase = (string)reg.Read("SqlDatabase", "FikrPos");
+            SqlUsername = (string)reg.Read("SqlUsername", "sa");
             SqlPassword = Cryptho.Decrypt((string)reg.Read("SqlPassword", Cryptho.Encrypt("adminadmin")));
             loggingLevel = (string)reg.Read("loggingLevel", "Normal");
         }

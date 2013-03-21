@@ -39,7 +39,7 @@ namespace FikrPos.Library
 			set	{ showError = value; }
 		}
 
-        private string subKey = "SOFTWARE\\Swdev Bali\\eMailToMSSQL";
+        private string subKey = "SOFTWARE\\Fikr Malaysia\\Pos";
 		/// <summary>
 		/// A property to set the SubKey value
 		/// (default = "SOFTWARE\\" + Application.ProductName.ToUpper())
@@ -261,7 +261,7 @@ namespace FikrPos.Library
 		private void ShowErrorMessage(Exception e, string Title)
 		{
 			if (showError == true)
-                EventLog.WriteEntry(Program.EventLogName, "[RegistrySettings] " + e.Message, EventLogEntryType.FailureAudit, 1);
+                EventLog.WriteEntry(AppStates.EventLogName, "[RegistrySettings] " + e.Message, EventLogEntryType.FailureAudit, 1);
             
 		}
 	}

@@ -17,5 +17,10 @@ namespace FikrPos
             startupForm = new StartupForm();
             Application.Run(startupForm);
         }
+
+        public static void BeginDataInitializationProcess()
+        {
+            MessageBox.Show("Init data");
+        }
     }
 }

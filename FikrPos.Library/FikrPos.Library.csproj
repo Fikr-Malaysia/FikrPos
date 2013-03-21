@@ -52,7 +52,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -61,8 +61,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataManager.cs" />
-    <Compile Include="Features.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="AppFeatures.cs" />
+    <Compile Include="FikrPos.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FikrPos.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="AppStates.cs" />
     <Compile Include="helper\Cryptho.cs" />
     <Compile Include="helper\ModifyRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,6 +81,11 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="FikrPos.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>FikrPos.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -109,6 +119,14 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FikrPos.dbml.layout">
+      <DependentUpon>FikrPos.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

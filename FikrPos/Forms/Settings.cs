@@ -49,7 +49,7 @@ namespace FikrPos.Client.Forms
             SaveValues();
             RegistrySettings.writeValues();
             RegistrySettings.loadValues();
-            Features.getInstance().resetConnection();
+            AppFeatures.getInstance().resetConnection();
             Close();            
         }
     }

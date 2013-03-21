@@ -15,8 +15,14 @@ namespace FikrPos
         public StartupForm()
         {
             InitializeComponent();
-            Features.StartupPath = Application.StartupPath;
+            AppFeatures.StartupPath = Application.StartupPath;
             DataManager.getInstance().initData();
+
+            if (AppStates.IsInit)
+            {
+                Program.BeginDataInitializationProcess();
+            }
+            Visible = false;
         }
 
         private void StartupForm_Load(object sender, EventArgs e)

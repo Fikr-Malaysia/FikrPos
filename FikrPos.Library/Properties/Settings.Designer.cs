@@ -32,5 +32,15 @@ namespace FikrPos.Library.Properties {
                 return ((string)(this["Database1ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=COREI3\\sqlexpress;Initial Catalog=FikrPos;Integrated Security=True")]
+        public string FikrPosConnectionString {
+            get {
+                return ((string)(this["FikrPosConnectionString"]));
+            }
+        }
     }
 }
