@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FikrPos.Client.Forms;
+using FikrPos.Forms;
 
 namespace FikrPos
 {
@@ -37,6 +38,11 @@ namespace FikrPos
 
                 db.SubmitChanges();
             }
+
+            Login login = new Login();
+            login.ShowDialog();
+            
+            
         }
 
         private void StartupForm_Load(object sender, EventArgs e)
