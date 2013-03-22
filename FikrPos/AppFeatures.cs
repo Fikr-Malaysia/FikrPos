@@ -13,6 +13,7 @@ namespace FikrPos
         private SqlConnection dataConnection = null;
         private static AppFeatures instance = null;
         public static string StartupPath;
+        public static AppUser userLogin;
 
         private AppFeatures()
         {

@@ -49,23 +49,23 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(489, 175);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOk
             // 
-            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOk.Location = new System.Drawing.Point(401, 175);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 2;
             this.btnOk.Text = "&OK";
             this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // txtPassword
             // 
@@ -74,6 +74,7 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(163, 20);
             this.txtPassword.TabIndex = 1;
+            this.txtPassword.Text = "adminadmin";
             // 
             // label2
             // 
@@ -93,6 +94,7 @@
             this.cboUsername.Name = "cboUsername";
             this.cboUsername.Size = new System.Drawing.Size(163, 21);
             this.cboUsername.TabIndex = 0;
+            this.cboUsername.Text = "root";
             // 
             // label1
             // 
@@ -108,7 +110,6 @@
             this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(583, 224);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCancel);
