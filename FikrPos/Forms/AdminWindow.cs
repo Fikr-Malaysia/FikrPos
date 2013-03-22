@@ -11,8 +11,7 @@ using FikrPos.Forms.Data;
 namespace FikrPos.Forms
 {
     public partial class AdminWindow : Form
-    {
-        public bool graceClose = false;
+    {        
         private int childFormNumber = 0;
 
         public AdminWindow()
@@ -119,7 +118,7 @@ namespace FikrPos.Forms
 
         private void AdminWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!graceClose)
+            if (!Program.graceClose)
             {
                 e.Cancel = Program.logout();
             }

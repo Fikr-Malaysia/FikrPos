@@ -14,6 +14,7 @@ namespace FikrPos.Forms
         public Login()
         {
             InitializeComponent();
+            Program.graceClose = false;
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -50,6 +51,14 @@ namespace FikrPos.Forms
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Program.Exit();
+        }
+
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!Program.graceClose)
+            {
+                e.Cancel = Program.Exit();
+            }            
         }
     }
 }
