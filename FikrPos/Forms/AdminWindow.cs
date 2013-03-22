@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FikrPos.Forms.Data;
+using FikrPos.Forms.Data.ProductFolder;
 
 namespace FikrPos.Forms
 {
@@ -124,6 +125,20 @@ namespace FikrPos.Forms
             {
                 e.Cancel = Program.Exit();
             }
+        }
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.ShowDialog();
+        }
+
+        private void productToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataProduct dataProduct = new DataProduct();
+            dataProduct.WindowState = FormWindowState.Maximized;
+            dataProduct.MdiParent = this;
+            dataProduct.Show();
         }
     }
 }

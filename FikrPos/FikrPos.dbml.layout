@@ -14,5 +14,11 @@
         <elementListCompartment Id="eea57b25-9915-432c-88a2-f06b4b7c00ad" absoluteBounds="1.2650000000000001, 2.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="5e97e584-8389-4aa3-94ad-c36e810b2f02" absoluteBounds="4.25, 2.125, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/FikrPosDataContext/Product" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3d1b112a-8d40-4ad6-bc60-9be9eec56995" absoluteBounds="4.265, 2.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

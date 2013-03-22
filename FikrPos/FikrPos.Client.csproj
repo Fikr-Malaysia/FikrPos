@@ -89,16 +89,28 @@
     <Compile Include="Forms\AdminWindow.Designer.cs">
       <DependentUpon>AdminWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Data\User\DataUser.cs">
+    <Compile Include="Forms\Data\ProductFolder\DataProduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Data\User\DataUser.Designer.cs">
+    <Compile Include="Forms\Data\ProductFolder\DataProduct.Designer.cs">
+      <DependentUpon>DataProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Data\ProductFolder\InputProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Data\ProductFolder\InputProduct.Designer.cs">
+      <DependentUpon>InputProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Data\UserFolder\DataUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Data\UserFolder\DataUser.Designer.cs">
       <DependentUpon>DataUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Data\User\InputUser.cs">
+    <Compile Include="Forms\Data\UserFolder\InputUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Data\User\InputUser.Designer.cs">
+    <Compile Include="Forms\Data\UserFolder\InputUser.Designer.cs">
       <DependentUpon>InputUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Login.cs">
@@ -134,10 +146,16 @@
     <EmbeddedResource Include="Forms\AdminWindow.resx">
       <DependentUpon>AdminWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Data\User\DataUser.resx">
+    <EmbeddedResource Include="Forms\Data\ProductFolder\DataProduct.resx">
+      <DependentUpon>DataProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Data\ProductFolder\InputProduct.resx">
+      <DependentUpon>InputProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Data\UserFolder\DataUser.resx">
       <DependentUpon>DataUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Data\User\InputUser.resx">
+    <EmbeddedResource Include="Forms\Data\UserFolder\InputUser.resx">
       <DependentUpon>InputUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.resx">

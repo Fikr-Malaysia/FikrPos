@@ -12,6 +12,9 @@ namespace FikrPos.Forms.Data
 {
     public partial class DataUser : Form
     {
+        int oldRow;
+        int oldCol;
+
         public DataUser()
         {
             InitializeComponent();
@@ -24,8 +27,22 @@ namespace FikrPos.Forms.Data
             var appUsers = from u in db.AppUsers
                            select new { Username = u.username, Role = u.role };
 
+            if (dataGridView1.SelectedCells.Count > 0)
+            {
+                oldRow = dataGridView1.SelectedCells[0].RowIndex;
+                oldCol = dataGridView1.SelectedCells[0].ColumnIndex;
+            }
+            else
+            {
+                oldRow = 0;
+                oldCol = 0;
+            }
+
             dataGridView1.DataSource = appUsers;
             dataGridView1.Columns[dataGridView1.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            dataGridView1.Rows[oldRow].Cells[oldCol].Selected = true;
+            dataGridView1.Focus();
         }
 
         private void btnNew_Click(object sender, EventArgs e)
