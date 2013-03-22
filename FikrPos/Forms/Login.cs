@@ -37,13 +37,16 @@ namespace FikrPos.Forms
                     {
                         Program.adminWindow.Dispose();
                     }
+                    
                     Program.adminWindow = new AdminWindow();
                     Program.adminWindow.Show();
                 }
                 else
                 {
                 }
+                Program.graceClose = true;
                 Close();
+                Program.graceClose = false;
             }
 
         }

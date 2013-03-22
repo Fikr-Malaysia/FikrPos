@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FikrPos.Forms.Data
+namespace FikrPos.Forms.Data.User
 {
-    public partial class DataUser : Form
+    public partial class InputUser : Form
     {
-        public DataUser()
+        public InputUser()
         {
             InitializeComponent();
         }

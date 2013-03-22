@@ -27,7 +27,7 @@ namespace FikrPos
             
         }
 
-        internal static bool logout()
+        internal static bool Logout()
         {
             if (MessageBox.Show("Are you sure you want to logout?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {

@@ -86,11 +86,17 @@
     <Compile Include="Forms\AdminWindow.Designer.cs">
       <DependentUpon>AdminWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Data\DataUser.cs">
+    <Compile Include="Forms\Data\User\DataUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Data\DataUser.Designer.cs">
+    <Compile Include="Forms\Data\User\DataUser.Designer.cs">
       <DependentUpon>DataUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Data\User\InputUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Data\User\InputUser.Designer.cs">
+      <DependentUpon>InputUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Login.cs">
       <SubType>Form</SubType>
@@ -124,8 +130,11 @@
     <EmbeddedResource Include="Forms\AdminWindow.resx">
       <DependentUpon>AdminWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Data\DataUser.resx">
+    <EmbeddedResource Include="Forms\Data\User\DataUser.resx">
       <DependentUpon>DataUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Data\User\InputUser.resx">
+      <DependentUpon>InputUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

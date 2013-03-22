@@ -1,6 +1,6 @@
-﻿namespace FikrPos.Forms.Data
+﻿namespace FikrPos.Forms.Data.User
 {
-    partial class DataUser
+    partial class InputUser
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // DataUser
+            // InputUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Name = "DataUser";
+            this.Name = "InputUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Data User";
+            this.Text = "InputUser";
             this.ResumeLayout(false);
 
         }

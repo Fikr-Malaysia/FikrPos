@@ -17,6 +17,7 @@ namespace FikrPos.Forms
         public AdminWindow()
         {
             InitializeComponent();
+            Program.graceClose = false;
         }
 
         private void ShowNewForm(object sender, EventArgs e)
@@ -106,12 +107,13 @@ namespace FikrPos.Forms
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Program.logout();
+            Program.Logout();
         }
 
         private void userToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataUser dataUser = new DataUser();
+            dataUser.WindowState = FormWindowState.Maximized;
             dataUser.MdiParent = this;
             dataUser.Show();
         }
@@ -120,7 +122,7 @@ namespace FikrPos.Forms
         {
             if (!Program.graceClose)
             {
-                e.Cancel = Program.logout();
+                e.Cancel = Program.Exit();
             }
         }
     }
