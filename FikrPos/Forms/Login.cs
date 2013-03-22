@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using FikrPos.Models;
 
 namespace FikrPos.Forms
 {
@@ -31,7 +32,7 @@ namespace FikrPos.Forms
             }
             else
             {
-                if (AppFeatures.userLogin.isadmin==1)
+                if (AppFeatures.userLogin.role.Equals(Roles.Admin))
                 {
                     if (Program.adminWindow != null)
                     {

@@ -52,3 +52,9 @@ namespace FikrPos
         }
     }
 }
+
+public enum FormModeEnum
+{
+    Insert,
+    Update
+}

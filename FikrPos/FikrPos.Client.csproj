@@ -69,6 +69,9 @@
     <Compile Include="ApplicationStartup.cs" />
     <Compile Include="AppStates.cs" />
     <Compile Include="DataManager.cs" />
+    <Compile Include="FikrPos.cs">
+      <DependentUpon>FikrPos.dbml</DependentUpon>
+    </Compile>
     <Compile Include="FikrPos.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -112,6 +115,7 @@
     </Compile>
     <Compile Include="helper\Cryptho.cs" />
     <Compile Include="helper\ModifyRegistry.cs" />
+    <Compile Include="Models\Roles.cs" />
     <Compile Include="RegistrySettings.cs" />
     <Compile Include="StartupForm.cs">
       <SubType>Form</SubType>
@@ -205,6 +209,7 @@
   <ItemGroup>
     <None Include="Resources\pos.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

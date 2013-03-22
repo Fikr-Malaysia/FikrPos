@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using FikrPos.Client.Forms;
 using FikrPos.Forms;
+using FikrPos.Models;
 
 namespace FikrPos
 {
@@ -30,7 +31,7 @@ namespace FikrPos
                 AppUser root = new AppUser();
                 root.username = "root";
                 root.password = Cryptho.Encrypt(admPwd.AdminPassword);
-                root.isadmin = 1;
+                root.role = Roles.Admin;
                 db.AppUsers.InsertOnSubmit(root);
 
                 AppInfo appInfo = db.AppInfos.SingleOrDefault();
