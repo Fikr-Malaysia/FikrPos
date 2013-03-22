@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FikrPos.Models;
+using FikrPos.Forms.Pos;
 
 namespace FikrPos.Forms
 {
@@ -40,10 +41,16 @@ namespace FikrPos.Forms
                     }
                     
                     Program.adminWindow = new AdminWindow();
-                    Program.adminWindow.Show();
+                    Program.adminWindow.ShowDialog();
                 }
-                else
+                else if (AppFeatures.userLogin.role.Equals(Roles.Cashier))
                 {
+                    if (Program.posGui != null)
+                    {
+                        Program.posGui.Dispose();
+                    }
+                    Program.posGui = new PosGui();
+                    Program.posGui.Show();
                 }
                 Program.graceClose = true;
                 Close();

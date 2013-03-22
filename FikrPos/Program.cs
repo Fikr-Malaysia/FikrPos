@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using FikrPos.Forms;
+using FikrPos.Forms.Pos;
 
 namespace FikrPos
 {
@@ -11,6 +12,7 @@ namespace FikrPos
         static string EventLogName = "FikrPos";
         public static StartupForm startupForm;
         public static AdminWindow adminWindow;
+        public static PosGui posGui;
         public static bool graceClose = false;
 
         [STAThread]
