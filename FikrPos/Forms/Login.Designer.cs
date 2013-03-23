@@ -74,7 +74,6 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(163, 20);
             this.txtPassword.TabIndex = 1;
-            this.txtPassword.Text = "adminadmin";
             // 
             // label2
             // 
@@ -94,7 +93,6 @@
             this.cboUsername.Name = "cboUsername";
             this.cboUsername.Size = new System.Drawing.Size(163, 21);
             this.cboUsername.TabIndex = 0;
-            this.cboUsername.Text = "root";
             // 
             // label1
             // 

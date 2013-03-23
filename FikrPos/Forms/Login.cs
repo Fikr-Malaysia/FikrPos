@@ -21,11 +21,8 @@ namespace FikrPos.Forms
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            FikrPosDataContext db = new FikrPosDataContext();
-            AppFeatures.userLogin = (from u in db.AppUsers
-                            where u.username == cboUsername.Text
-                            && u.password == Cryptho.Encrypt(txtPassword.Text)
-                            select u).SingleOrDefault();
+
+            AppFeatures.userLogin = Program.Login(cboUsername.Text, txtPassword.Text);
             
             if (AppFeatures.userLogin == null)
             {
@@ -33,31 +30,15 @@ namespace FikrPos.Forms
             }
             else
             {
-                if (AppFeatures.userLogin.role.Equals(Roles.Admin))
-                {
-                    if (Program.adminWindow != null)
-                    {
-                        Program.adminWindow.Dispose();
-                    }
-                    
-                    Program.adminWindow = new AdminWindow();
-                    Program.adminWindow.ShowDialog();
-                }
-                else if (AppFeatures.userLogin.role.Equals(Roles.Cashier))
-                {
-                    if (Program.posGui != null)
-                    {
-                        Program.posGui.Dispose();
-                    }
-                    Program.posGui = new PosGui();
-                    Program.posGui.Show();
-                }
+                Program.UserEnter();
                 Program.graceClose = true;
                 Close();
                 Program.graceClose = false;
             }
 
         }
+
+        
 
         private void btnCancel_Click(object sender, EventArgs e)
         {

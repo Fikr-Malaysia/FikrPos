@@ -18,7 +18,7 @@ namespace FikrPos.Forms.Pos
 
         private void PosGui_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Program.Logout();
+            Program.Exit();
         }
     }
 }

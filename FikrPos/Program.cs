@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using FikrPos.Forms;
 using FikrPos.Forms.Pos;
+using FikrPos.Models;
 
 namespace FikrPos
 {
@@ -16,8 +17,27 @@ namespace FikrPos
         public static bool graceClose = false;
 
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
+            string username = null;
+            string password = null;
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        username = args[i];
+                        break;
+                    case 1:
+                        password = args[i];
+                        break;
+                }
+            }
+            
+            if(username!=null && password!=null)
+                AppFeatures.userLogin = Program.Login(username, password);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             startupForm = new StartupForm();
@@ -34,7 +54,14 @@ namespace FikrPos
             if (MessageBox.Show("Are you sure you want to logout?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Program.graceClose = true;
-                Program.adminWindow.Close();
+                if(AppFeatures.userLogin.role.Equals(Roles.Admin))
+                {
+                    Program.adminWindow.Close();
+                }
+                else if (AppFeatures.userLogin.role.Equals(Roles.Cashier))
+                {
+                    Program.posGui.Close();
+                }
                 Login login = new Login();
                 login.ShowDialog();
                 return false;
@@ -51,6 +78,41 @@ namespace FikrPos
                 return false;
             }
             return true;
+        }
+
+
+
+        internal static AppUser Login(string username, string password)
+        {
+            FikrPosDataContext db = new FikrPosDataContext();
+            return (from u in db.AppUsers
+                            where u.username == username
+                            && u.password == Cryptho.Encrypt(password)
+                            select u).SingleOrDefault();
+
+        }
+
+        internal static void UserEnter()
+        {
+            if (AppFeatures.userLogin.role.Equals(Roles.Admin))
+            {
+                if (Program.adminWindow != null)
+                {
+                    Program.adminWindow.Dispose();
+                }
+
+                Program.adminWindow = new AdminWindow();
+                Program.adminWindow.ShowDialog();
+            }
+            else if (AppFeatures.userLogin.role.Equals(Roles.Cashier))
+            {
+                if (Program.posGui != null)
+                {
+                    Program.posGui.Dispose();
+                }
+                Program.posGui = new PosGui();
+                Program.posGui.Show();
+            }
         }
     }
 }

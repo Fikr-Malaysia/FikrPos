@@ -21,6 +21,7 @@ namespace FikrPos
 
             AppFeatures.StartupPath = Application.StartupPath;
             DataManager.getInstance().initData();
+
             if (AppStates.IsInit)
             {
                 AdministratorPassword admPwd = new AdministratorPassword();
@@ -29,7 +30,7 @@ namespace FikrPos
                 FikrPosDataContext db = new FikrPosDataContext();
                 db.ExecuteCommand("Delete from AppUser");
                 AppUser root = new AppUser();
-                root.username = "root";
+                root.username = "admin";
                 root.password = Cryptho.Encrypt(admPwd.AdminPassword);
                 root.role = Roles.Admin;
                 db.AppUsers.InsertOnSubmit(root);
@@ -40,8 +41,15 @@ namespace FikrPos
                 db.SubmitChanges();
             }
 
-            Login login = new Login();
-            login.ShowDialog();
+            if (AppFeatures.userLogin == null)
+            {
+                Login login = new Login();
+                login.ShowDialog();
+            }
+            else
+            {
+                Program.UserEnter();
+            }
             
             
         }
