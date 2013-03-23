@@ -15,12 +15,14 @@ namespace FikrPos
         public static AdminWindow adminWindow;
         public static PosGui posGui;
         public static bool graceClose = false;
+        public static FikrPosDataContext db = null;
 
         [STAThread]
         static void Main(string[] args)
         {
             string username = null;
             string password = null;
+            bool forceInit = false;
 
             for (int i = 0; i < args.Length; i++)
             {
@@ -32,11 +34,24 @@ namespace FikrPos
                     case 1:
                         password = args[i];
                         break;
+                    case 2:
+                        forceInit = args[i].Equals("forceInit");
+                        break;
                 }
             }
             
             if(username!=null && password!=null)
                 AppFeatures.userLogin = Program.Login(username, password);
+
+            if (forceInit)
+            {
+                FikrPosDataContext db = new FikrPosDataContext();
+                AppStates.appInfo = db.AppInfos.SingleOrDefault();
+                AppStates.appInfo.IsInit = 1;
+                AppStates.appInfo.Company_Name = null;
+                AppStates.appInfo.Company_Address = null;
+                db.SubmitChanges();
+            }
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -113,6 +128,15 @@ namespace FikrPos
                 Program.posGui = new PosGui();
                 Program.posGui.Show();
             }
+        }
+
+        internal static FikrPosDataContext getDb()
+        {
+            if (db == null)
+            {
+                db = new FikrPosDataContext();
+            }
+            return db;
         }
     }
 }

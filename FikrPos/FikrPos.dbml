@@ -1,11 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FikrPos" Class="FikrPosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=COREI3\sqlexpress;Initial Catalog=FikrPos;Integrated Security=True" SettingsObjectName="FikrPos.Properties.Settings" SettingsPropertyName="FikrPosConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.AppInfo" Member="AppInfos">
-    <Type Name="AppInfo">
-      <Column Name="IsInit" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.AppUser" Member="AppUsers">
     <Type Name="AppUser">
       <Column Name="username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
@@ -24,6 +18,14 @@
       <Column Name="discount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="stock" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="minimum_stock" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AppInfo" Member="AppInfos">
+    <Type Name="AppInfo">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IsInit" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="[Company Name]" Member="Company_Name" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="[Company Address]" Member="Company_Address" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

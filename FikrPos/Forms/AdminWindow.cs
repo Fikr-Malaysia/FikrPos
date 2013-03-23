@@ -21,7 +21,7 @@ namespace FikrPos.Forms
             Program.graceClose = false;
         }
 
-        private void ShowNewForm(object sender, EventArgs e)
+        public void ShowNewForm(object sender, EventArgs e)
         {
             Form childForm = new Form();
             childForm.MdiParent = this;
@@ -139,6 +139,29 @@ namespace FikrPos.Forms
             dataProduct.WindowState = FormWindowState.Maximized;
             dataProduct.MdiParent = this;
             dataProduct.Show();
+        }
+
+        private void AdminWindow_Load(object sender, EventArgs e)
+        {
+            if (AppStates.appInfo.Company_Name == null)
+            {
+                MessageBox.Show("Please initialize your company data first");
+                
+                CompanyProfile companyProfile = new CompanyProfile();
+                companyProfile.ShowDialog();
+            }
+        }
+
+        private void companyProfileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowForm(new CompanyProfile());
+        }
+
+        private void ShowForm(Form form)
+        {
+            form.MdiParent = this;
+            form.WindowState = FormWindowState.Maximized;
+            form.Show();
         }
     }
 }

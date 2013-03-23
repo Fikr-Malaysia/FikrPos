@@ -30,15 +30,15 @@ namespace FikrPos
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertAppInfo(AppInfo instance);
-    partial void UpdateAppInfo(AppInfo instance);
-    partial void DeleteAppInfo(AppInfo instance);
     partial void InsertAppUser(AppUser instance);
     partial void UpdateAppUser(AppUser instance);
     partial void DeleteAppUser(AppUser instance);
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
+    partial void InsertAppInfo(AppInfo instance);
+    partial void UpdateAppInfo(AppInfo instance);
+    partial void DeleteAppInfo(AppInfo instance);
     #endregion
 		
 		public FikrPosDataContext() : 
@@ -71,14 +71,6 @@ namespace FikrPos
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<AppInfo> AppInfos
-		{
-			get
-			{
-				return this.GetTable<AppInfo>();
-			}
-		}
-		
 		public System.Data.Linq.Table<AppUser> AppUsers
 		{
 			get
@@ -94,90 +86,12 @@ namespace FikrPos
 				return this.GetTable<Product>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AppInfo")]
-	public partial class AppInfo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private byte _IsInit;
-		
-		private int _id;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIsInitChanging(byte value);
-    partial void OnIsInitChanged();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    #endregion
-		
-		public AppInfo()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsInit", DbType="TinyInt NOT NULL")]
-		public byte IsInit
+		public System.Data.Linq.Table<AppInfo> AppInfos
 		{
 			get
 			{
-				return this._IsInit;
-			}
-			set
-			{
-				if ((this._IsInit != value))
-				{
-					this.OnIsInitChanging(value);
-					this.SendPropertyChanging();
-					this._IsInit = value;
-					this.SendPropertyChanged("IsInit");
-					this.OnIsInitChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<AppInfo>();
 			}
 		}
 	}
@@ -521,6 +435,140 @@ namespace FikrPos
 					this._minimum_stock = value;
 					this.SendPropertyChanged("minimum_stock");
 					this.Onminimum_stockChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AppInfo")]
+	public partial class AppInfo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private byte _IsInit;
+		
+		private string _Company_Name;
+		
+		private string _Company_Address;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnIsInitChanging(byte value);
+    partial void OnIsInitChanged();
+    partial void OnCompany_NameChanging(string value);
+    partial void OnCompany_NameChanged();
+    partial void OnCompany_AddressChanging(string value);
+    partial void OnCompany_AddressChanged();
+    #endregion
+		
+		public AppInfo()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsInit", DbType="TinyInt NOT NULL")]
+		public byte IsInit
+		{
+			get
+			{
+				return this._IsInit;
+			}
+			set
+			{
+				if ((this._IsInit != value))
+				{
+					this.OnIsInitChanging(value);
+					this.SendPropertyChanging();
+					this._IsInit = value;
+					this.SendPropertyChanged("IsInit");
+					this.OnIsInitChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Company Name]", Storage="_Company_Name", DbType="VarChar(255)")]
+		public string Company_Name
+		{
+			get
+			{
+				return this._Company_Name;
+			}
+			set
+			{
+				if ((this._Company_Name != value))
+				{
+					this.OnCompany_NameChanging(value);
+					this.SendPropertyChanging();
+					this._Company_Name = value;
+					this.SendPropertyChanged("Company_Name");
+					this.OnCompany_NameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Company Address]", Storage="_Company_Address", DbType="VarChar(255)")]
+		public string Company_Address
+		{
+			get
+			{
+				return this._Company_Address;
+			}
+			set
+			{
+				if ((this._Company_Address != value))
+				{
+					this.OnCompany_AddressChanging(value);
+					this.SendPropertyChanging();
+					this._Company_Address = value;
+					this.SendPropertyChanged("Company_Address");
+					this.OnCompany_AddressChanged();
 				}
 			}
 		}

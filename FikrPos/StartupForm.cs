@@ -22,7 +22,7 @@ namespace FikrPos
             AppFeatures.StartupPath = Application.StartupPath;
             DataManager.getInstance().initData();
 
-            if (AppStates.IsInit)
+            if (AppStates.appInfo.IsInit == 1)
             {
                 AdministratorPassword admPwd = new AdministratorPassword();
                 admPwd.ShowDialog();

@@ -8,6 +8,6 @@ namespace FikrPos
     public static class AppStates
     {
         public static string EventLogName = "FikrPos";
-        public static bool IsInit =  false;
+        public static AppInfo appInfo { get; set; }
     }
 }
