@@ -14,6 +14,8 @@ namespace FikrPos.Forms.Pos
         public PosGui()
         {
             InitializeComponent();
+            lblCompanyName.Text = AppStates.appInfo.Company_Name;
+            lblAddress.Text = AppStates.appInfo.Company_Address;
         }
 
         private void PosGui_KeyPress(object sender, KeyPressEventArgs e)
