@@ -26,7 +26,7 @@ namespace FikrPos.Forms.Data.ProductFolder
             
             FikrPosDataContext db = new FikrPosDataContext();
             var product = from p in db.Products 
-                           select new { p.Code, p.Name, p.Price, p.Stock, p.Minimum_Stock };
+                           select p;
 
             if (dataGridView1.SelectedCells.Count > 0)
             {
@@ -36,10 +36,11 @@ namespace FikrPos.Forms.Data.ProductFolder
             else
             {
                 oldRow = 0;
-                oldCol = 0;
+                oldCol = 1;
             }
 
             dataGridView1.DataSource = product;
+            dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[dataGridView1.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             
             dataGridView1.Rows[oldRow].Cells[oldCol].Selected = true;
@@ -73,7 +74,7 @@ namespace FikrPos.Forms.Data.ProductFolder
 
         private string getKey()
         {
-            return dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex].Cells[0].Value.ToString();
+            return dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex].Cells[1].Value.ToString();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

@@ -47,6 +47,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.txtTax = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -95,6 +97,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtTax);
+            this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.txtMinimumStock);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.txtStock);
@@ -112,20 +116,20 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(238, 210);
-            this.panel1.TabIndex = 6;
+            this.panel1.Size = new System.Drawing.Size(238, 267);
+            this.panel1.TabIndex = 0;
             // 
             // txtMinimumStock
             // 
-            this.txtMinimumStock.Location = new System.Drawing.Point(115, 181);
+            this.txtMinimumStock.Location = new System.Drawing.Point(115, 212);
             this.txtMinimumStock.Name = "txtMinimumStock";
             this.txtMinimumStock.Size = new System.Drawing.Size(100, 20);
-            this.txtMinimumStock.TabIndex = 6;
+            this.txtMinimumStock.TabIndex = 7;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(31, 186);
+            this.label7.Location = new System.Drawing.Point(31, 217);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 13);
             this.label7.TabIndex = 12;
@@ -133,15 +137,15 @@
             // 
             // txtStock
             // 
-            this.txtStock.Location = new System.Drawing.Point(115, 155);
+            this.txtStock.Location = new System.Drawing.Point(115, 186);
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(100, 20);
-            this.txtStock.TabIndex = 5;
+            this.txtStock.TabIndex = 6;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(31, 160);
+            this.label6.Location = new System.Drawing.Point(31, 191);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 13);
             this.label6.TabIndex = 10;
@@ -202,7 +206,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(244, 264);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(244, 321);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
             // panel2
@@ -210,7 +214,7 @@
             this.panel2.Controls.Add(this.btnOK);
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 219);
+            this.panel2.Location = new System.Drawing.Point(3, 276);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(238, 42);
             this.panel2.TabIndex = 7;
@@ -236,13 +240,29 @@
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // txtTax
+            // 
+            this.txtTax.Location = new System.Drawing.Point(115, 155);
+            this.txtTax.Name = "txtTax";
+            this.txtTax.Size = new System.Drawing.Size(100, 20);
+            this.txtTax.TabIndex = 5;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(31, 160);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(25, 13);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "Tax";
+            // 
             // InputProduct
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(244, 264);
+            this.ClientSize = new System.Drawing.Size(244, 321);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "InputProduct";
@@ -278,5 +298,7 @@
         private System.Windows.Forms.TextBox txtDiscount;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cboUnit;
+        private System.Windows.Forms.TextBox txtTax;
+        private System.Windows.Forms.Label label8;
     }
 }

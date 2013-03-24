@@ -36,6 +36,7 @@ namespace FikrPos.Forms.Data.ProductFolder
                 product.Price = Convert.ToDouble(txtPrice.Text);
                 product.Unit = cboUnit.Text;
                 product.Discount = Convert.ToDouble(txtDiscount.Text);
+                product.Tax = Convert.ToDouble(txtTax.Text);
                 product.Stock = Convert.ToInt32(txtStock.Text);
                 product.Minimum_Stock = Convert.ToInt32(txtMinimumStock.Text);
                 db.Products.InsertOnSubmit(product);
@@ -51,6 +52,7 @@ namespace FikrPos.Forms.Data.ProductFolder
                 product.Price = Convert.ToDouble(txtPrice.Text);
                 product.Unit = cboUnit.Text;
                 product.Discount = Convert.ToDouble(txtDiscount.Text);
+                product.Tax = Convert.ToDouble(txtTax.Text);
                 product.Stock = Convert.ToInt32(txtStock.Text);
                 product.Minimum_Stock = Convert.ToInt32(txtMinimumStock.Text);
                 db.SubmitChanges();
@@ -71,8 +73,10 @@ namespace FikrPos.Forms.Data.ProductFolder
                 txtPrice.Text = product.Price.ToString();
                 cboUnit.Text = product.Unit;
                 txtDiscount.Text = product.Discount.ToString();
+                txtTax.Text = product.Tax.ToString();
                 txtStock.Text = product.Stock.ToString();
                 txtMinimumStock.Text = product.Minimum_Stock.ToString();
+                
             }
         }
     }

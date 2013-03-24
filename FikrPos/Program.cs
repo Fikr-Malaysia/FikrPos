@@ -16,6 +16,7 @@ namespace FikrPos
         public static PosGui posGui;
         public static bool graceClose = false;
         public static FikrPosDataContext db = null;
+        public static bool ForceClose = false;
 
         [STAThread]
         static void Main(string[] args)
@@ -36,6 +37,9 @@ namespace FikrPos
                         break;
                     case 2:
                         forceInit = args[i].Equals("forceInit");
+                        break;
+                    case 3:
+                        ForceClose = args[i].Equals("forceClose");
                         break;
                 }
             }
@@ -86,7 +90,16 @@ namespace FikrPos
 
         internal static bool Exit()
         {
-            if (MessageBox.Show("Are you sure you want to exit?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (!ForceClose)
+            {
+                if (MessageBox.Show("Are you sure you want to exit?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Program.graceClose = true;
+                    Application.Exit();
+                    return false;
+                }
+            }
+            else
             {
                 Program.graceClose = true;
                 Application.Exit();

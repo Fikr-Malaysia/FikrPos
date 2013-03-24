@@ -17,6 +17,15 @@
       <Association Name="AppUser_Sale" Member="Sales" ThisKey="ID" OtherKey="UserId" Type="Sale" />
     </Type>
   </Table>
+  <Table Name="dbo.Sale" Member="Sales">
+    <Type Name="Sale">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Sale_SaleDetail" Member="SaleDetails" ThisKey="ID" OtherKey="SaleID" Type="SaleDetail" />
+      <Association Name="AppUser_Sale" Member="AppUser" ThisKey="UserId" OtherKey="ID" Type="AppUser" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Product" Member="Products">
     <Type Name="Product">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -31,15 +40,6 @@
       <Association Name="Product_SaleDetail" Member="SaleDetails" ThisKey="ID" OtherKey="ProductID" Type="SaleDetail" />
     </Type>
   </Table>
-  <Table Name="dbo.Sale" Member="Sales">
-    <Type Name="Sale">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Sale_SaleDetail" Member="SaleDetails" ThisKey="ID" OtherKey="SaleID" Type="SaleDetail" />
-      <Association Name="AppUser_Sale" Member="AppUser" ThisKey="UserId" OtherKey="ID" Type="AppUser" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.SaleDetail" Member="SaleDetails">
     <Type Name="SaleDetail">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -48,6 +48,7 @@
       <Column Name="Tax" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="Discount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[Extended Price]" Member="Extended_Price" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="SaleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Product_SaleDetail" Member="Product" ThisKey="ProductID" OtherKey="ID" Type="Product" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Sale_SaleDetail" Member="Sale" ThisKey="SaleID" OtherKey="ID" Type="Sale" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
