@@ -36,15 +36,15 @@ namespace FikrPos
     partial void InsertAppUser(AppUser instance);
     partial void UpdateAppUser(AppUser instance);
     partial void DeleteAppUser(AppUser instance);
-    partial void InsertSale(Sale instance);
-    partial void UpdateSale(Sale instance);
-    partial void DeleteSale(Sale instance);
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
     partial void InsertSaleDetail(SaleDetail instance);
     partial void UpdateSaleDetail(SaleDetail instance);
     partial void DeleteSaleDetail(SaleDetail instance);
+    partial void InsertSale(Sale instance);
+    partial void UpdateSale(Sale instance);
+    partial void DeleteSale(Sale instance);
     #endregion
 		
 		public FikrPosDataContext() : 
@@ -93,14 +93,6 @@ namespace FikrPos
 			}
 		}
 		
-		public System.Data.Linq.Table<Sale> Sales
-		{
-			get
-			{
-				return this.GetTable<Sale>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Product> Products
 		{
 			get
@@ -114,6 +106,14 @@ namespace FikrPos
 			get
 			{
 				return this.GetTable<SaleDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Sale> Sales
+		{
+			get
+			{
+				return this.GetTable<Sale>();
 			}
 		}
 	}
@@ -411,185 +411,6 @@ namespace FikrPos
 		{
 			this.SendPropertyChanging();
 			entity.AppUser = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Sale")]
-	public partial class Sale : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private System.DateTime _Date;
-		
-		private int _UserId;
-		
-		private EntitySet<SaleDetail> _SaleDetails;
-		
-		private EntityRef<AppUser> _AppUser;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnDateChanging(System.DateTime value);
-    partial void OnDateChanged();
-    partial void OnUserIdChanging(int value);
-    partial void OnUserIdChanged();
-    #endregion
-		
-		public Sale()
-		{
-			this._SaleDetails = new EntitySet<SaleDetail>(new Action<SaleDetail>(this.attach_SaleDetails), new Action<SaleDetail>(this.detach_SaleDetails));
-			this._AppUser = default(EntityRef<AppUser>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="Date NOT NULL")]
-		public System.DateTime Date
-		{
-			get
-			{
-				return this._Date;
-			}
-			set
-			{
-				if ((this._Date != value))
-				{
-					this.OnDateChanging(value);
-					this.SendPropertyChanging();
-					this._Date = value;
-					this.SendPropertyChanged("Date");
-					this.OnDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL")]
-		public int UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					if (this._AppUser.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sale_SaleDetail", Storage="_SaleDetails", ThisKey="ID", OtherKey="SaleID")]
-		public EntitySet<SaleDetail> SaleDetails
-		{
-			get
-			{
-				return this._SaleDetails;
-			}
-			set
-			{
-				this._SaleDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AppUser_Sale", Storage="_AppUser", ThisKey="UserId", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public AppUser AppUser
-		{
-			get
-			{
-				return this._AppUser.Entity;
-			}
-			set
-			{
-				AppUser previousValue = this._AppUser.Entity;
-				if (((previousValue != value) 
-							|| (this._AppUser.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._AppUser.Entity = null;
-						previousValue.Sales.Remove(this);
-					}
-					this._AppUser.Entity = value;
-					if ((value != null))
-					{
-						value.Sales.Add(this);
-						this._UserId = value.ID;
-					}
-					else
-					{
-						this._UserId = default(int);
-					}
-					this.SendPropertyChanged("AppUser");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_SaleDetails(SaleDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Sale = this;
-		}
-		
-		private void detach_SaleDetails(SaleDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.Sale = null;
 		}
 	}
 	
@@ -1184,6 +1005,353 @@ namespace FikrPos
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Sale")]
+	public partial class Sale : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private System.DateTime _Date;
+		
+		private int _UserId;
+		
+		private System.Nullable<int> _Total_Quantity;
+		
+		private System.Nullable<double> _Total_Discount;
+		
+		private System.Nullable<double> _Total_Tax;
+		
+		private System.Nullable<double> _Total_Price;
+		
+		private System.Nullable<double> _Total_Extended_Price;
+		
+		private System.Nullable<double> _Payment;
+		
+		private System.Nullable<double> _Change;
+		
+		private EntitySet<SaleDetail> _SaleDetails;
+		
+		private EntityRef<AppUser> _AppUser;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnUserIdChanging(int value);
+    partial void OnUserIdChanged();
+    partial void OnTotal_QuantityChanging(System.Nullable<int> value);
+    partial void OnTotal_QuantityChanged();
+    partial void OnTotal_DiscountChanging(System.Nullable<double> value);
+    partial void OnTotal_DiscountChanged();
+    partial void OnTotal_TaxChanging(System.Nullable<double> value);
+    partial void OnTotal_TaxChanged();
+    partial void OnTotal_PriceChanging(System.Nullable<double> value);
+    partial void OnTotal_PriceChanged();
+    partial void OnTotal_Extended_PriceChanging(System.Nullable<double> value);
+    partial void OnTotal_Extended_PriceChanged();
+    partial void OnPaymentChanging(System.Nullable<double> value);
+    partial void OnPaymentChanged();
+    partial void OnChangeChanging(System.Nullable<double> value);
+    partial void OnChangeChanged();
+    #endregion
+		
+		public Sale()
+		{
+			this._SaleDetails = new EntitySet<SaleDetail>(new Action<SaleDetail>(this.attach_SaleDetails), new Action<SaleDetail>(this.detach_SaleDetails));
+			this._AppUser = default(EntityRef<AppUser>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="Date NOT NULL")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL")]
+		public int UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					if (this._AppUser.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Total Quantity]", Storage="_Total_Quantity", DbType="Int")]
+		public System.Nullable<int> Total_Quantity
+		{
+			get
+			{
+				return this._Total_Quantity;
+			}
+			set
+			{
+				if ((this._Total_Quantity != value))
+				{
+					this.OnTotal_QuantityChanging(value);
+					this.SendPropertyChanging();
+					this._Total_Quantity = value;
+					this.SendPropertyChanged("Total_Quantity");
+					this.OnTotal_QuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Total Discount]", Storage="_Total_Discount", DbType="Float")]
+		public System.Nullable<double> Total_Discount
+		{
+			get
+			{
+				return this._Total_Discount;
+			}
+			set
+			{
+				if ((this._Total_Discount != value))
+				{
+					this.OnTotal_DiscountChanging(value);
+					this.SendPropertyChanging();
+					this._Total_Discount = value;
+					this.SendPropertyChanged("Total_Discount");
+					this.OnTotal_DiscountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Total Tax]", Storage="_Total_Tax", DbType="Float")]
+		public System.Nullable<double> Total_Tax
+		{
+			get
+			{
+				return this._Total_Tax;
+			}
+			set
+			{
+				if ((this._Total_Tax != value))
+				{
+					this.OnTotal_TaxChanging(value);
+					this.SendPropertyChanging();
+					this._Total_Tax = value;
+					this.SendPropertyChanged("Total_Tax");
+					this.OnTotal_TaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Total Price]", Storage="_Total_Price", DbType="Float")]
+		public System.Nullable<double> Total_Price
+		{
+			get
+			{
+				return this._Total_Price;
+			}
+			set
+			{
+				if ((this._Total_Price != value))
+				{
+					this.OnTotal_PriceChanging(value);
+					this.SendPropertyChanging();
+					this._Total_Price = value;
+					this.SendPropertyChanged("Total_Price");
+					this.OnTotal_PriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Total Extended Price]", Storage="_Total_Extended_Price", DbType="Float")]
+		public System.Nullable<double> Total_Extended_Price
+		{
+			get
+			{
+				return this._Total_Extended_Price;
+			}
+			set
+			{
+				if ((this._Total_Extended_Price != value))
+				{
+					this.OnTotal_Extended_PriceChanging(value);
+					this.SendPropertyChanging();
+					this._Total_Extended_Price = value;
+					this.SendPropertyChanged("Total_Extended_Price");
+					this.OnTotal_Extended_PriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Payment", DbType="Float")]
+		public System.Nullable<double> Payment
+		{
+			get
+			{
+				return this._Payment;
+			}
+			set
+			{
+				if ((this._Payment != value))
+				{
+					this.OnPaymentChanging(value);
+					this.SendPropertyChanging();
+					this._Payment = value;
+					this.SendPropertyChanged("Payment");
+					this.OnPaymentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Change", DbType="Float")]
+		public System.Nullable<double> Change
+		{
+			get
+			{
+				return this._Change;
+			}
+			set
+			{
+				if ((this._Change != value))
+				{
+					this.OnChangeChanging(value);
+					this.SendPropertyChanging();
+					this._Change = value;
+					this.SendPropertyChanged("Change");
+					this.OnChangeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sale_SaleDetail", Storage="_SaleDetails", ThisKey="ID", OtherKey="SaleID")]
+		public EntitySet<SaleDetail> SaleDetails
+		{
+			get
+			{
+				return this._SaleDetails;
+			}
+			set
+			{
+				this._SaleDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AppUser_Sale", Storage="_AppUser", ThisKey="UserId", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public AppUser AppUser
+		{
+			get
+			{
+				return this._AppUser.Entity;
+			}
+			set
+			{
+				AppUser previousValue = this._AppUser.Entity;
+				if (((previousValue != value) 
+							|| (this._AppUser.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AppUser.Entity = null;
+						previousValue.Sales.Remove(this);
+					}
+					this._AppUser.Entity = value;
+					if ((value != null))
+					{
+						value.Sales.Add(this);
+						this._UserId = value.ID;
+					}
+					else
+					{
+						this._UserId = default(int);
+					}
+					this.SendPropertyChanged("AppUser");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_SaleDetails(SaleDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Sale = this;
+		}
+		
+		private void detach_SaleDetails(SaleDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Sale = null;
 		}
 	}
 }

@@ -14,6 +14,7 @@ namespace FikrPos.Forms.Pos
     {        
         Hashtable hashSaleDetail;
         Sale sale;
+        PosStateEnum posState;
         public PosGui()
         {
             InitializeComponent();
@@ -27,6 +28,7 @@ namespace FikrPos.Forms.Pos
 
         private void prepareNewPosTransaction()
         {
+            posState = PosStateEnum.EnteringTransaction;
             hashSaleDetail = new Hashtable();
             sale = new Sale();
             sale.UserId = AppFeatures.userLogin.ID;
@@ -117,7 +119,7 @@ namespace FikrPos.Forms.Pos
         {
             //calculate footer
             double footerSubTotal = 0;
-            double footerQty = 0;
+            int footerQty = 0;
             double footerDiscount = 0;
             double footerTax = 0;
             double footerTotal = 0;
@@ -154,6 +156,12 @@ namespace FikrPos.Forms.Pos
             txtTax.Text = footerTax + "";
             txtSubTotal.Text = footerSubTotal + "";
             txtTotal.Text = footerTotal + "";
+
+            sale.Total_Price = footerSubTotal;
+            sale.Total_Quantity = footerQty;
+            sale.Total_Discount = footerDiscount;
+            sale.Total_Extended_Price = footerTotal;
+            sale.Total_Tax = footerTax;
         }
 
         private void PosGui_KeyUp(object sender, KeyEventArgs e)
@@ -178,10 +186,22 @@ namespace FikrPos.Forms.Pos
                     }
                     break;
                 case Keys.F12:
-                    FikrPosDataContext db = Program.getDb();
-                    db.Sales.InsertOnSubmit(sale);
-                    db.SubmitChanges();
-                    prepareNewPosTransaction();
+                    if (posState == PosStateEnum.EnteringTransaction)
+                    {
+                        posState = PosStateEnum.ReceivingPayment;
+                        ReceivePayment receivePayment = new ReceivePayment();
+                        receivePayment.prepareForm(Convert.ToDouble(txtTotal.Text));
+                        DialogResult dr = receivePayment.ShowDialog();
+                        if (dr == DialogResult.OK)
+                        {
+                            FikrPosDataContext db = Program.getDb();
+                            sale.Payment = receivePayment.payment;
+                            sale.Change = receivePayment.change;
+                            db.Sales.InsertOnSubmit(sale);
+                            db.SubmitChanges();
+                            prepareNewPosTransaction();
+                        }
+                    }
                     break;
                 
             }
@@ -199,7 +219,11 @@ namespace FikrPos.Forms.Pos
         {
             calculateFooter();
         }
+    }
 
-        
+    enum PosStateEnum
+    {
+        EnteringTransaction,
+        ReceivingPayment
     }
 }
