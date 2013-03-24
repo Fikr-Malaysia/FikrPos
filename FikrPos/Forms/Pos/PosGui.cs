@@ -171,6 +171,10 @@ namespace FikrPos.Forms.Pos
                 case Keys.F1:
                     txtScanCode.Focus();
                     break;
+                case Keys.F2:
+                    btnFind.Focus();
+                    btnFind_Click(null, null);
+                    break;
                 case Keys.Up:
                     if (dataGridView1.Focused && dataGridView1.SelectedCells != null)//&& dataGridView1.SelectedCells[0].RowIndex == 0
                     {
@@ -218,6 +222,18 @@ namespace FikrPos.Forms.Pos
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             calculateFooter();
+        }
+
+        private void btnFind_Click(object sender, EventArgs e)
+        {
+            FindProduct findProduct = new FindProduct();
+            DialogResult dr = findProduct.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                txtScanCode.Text = findProduct.ProductCode;
+                txtScanCode_KeyPress(txtScanCode, new KeyPressEventArgs((char)Keys.Return));
+                txtScanCode.Focus();
+            }
         }
     }
 

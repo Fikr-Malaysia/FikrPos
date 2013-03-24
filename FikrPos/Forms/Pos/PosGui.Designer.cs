@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblAddress = new System.Windows.Forms.Label();
             this.lblCompanyName = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -43,12 +45,8 @@
             this.txtDiscount = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSubTotal = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnFind = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txtScanCode = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtQuantity = new System.Windows.Forms.TextBox();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +54,8 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtScanCode = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -111,7 +111,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.btnFind);
             this.panel2.Controls.Add(this.dataGridView1);
             this.panel2.Controls.Add(this.txtScanCode);
             this.panel2.Controls.Add(this.label1);
@@ -138,6 +138,22 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(750, 160);
             this.panel3.TabIndex = 4;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(568, 46);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(46, 13);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Quantity";
+            // 
+            // txtQuantity
+            // 
+            this.txtQuantity.Location = new System.Drawing.Point(635, 40);
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.Size = new System.Drawing.Size(100, 20);
+            this.txtQuantity.TabIndex = 8;
             // 
             // label5
             // 
@@ -203,21 +219,22 @@
             this.txtSubTotal.Size = new System.Drawing.Size(100, 20);
             this.txtSubTotal.TabIndex = 0;
             // 
-            // button1
+            // btnFind
             // 
-            this.button1.Location = new System.Drawing.Point(282, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(42, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "&Cari";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnFind.Location = new System.Drawing.Point(282, 11);
+            this.btnFind.Name = "btnFind";
+            this.btnFind.Size = new System.Drawing.Size(64, 23);
+            this.btnFind.TabIndex = 3;
+            this.btnFind.Text = "&Find";
+            this.btnFind.UseVisualStyleBackColor = true;
+            this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -237,39 +254,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(750, 59);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
-            // 
-            // txtScanCode
-            // 
-            this.txtScanCode.Location = new System.Drawing.Point(101, 13);
-            this.txtScanCode.Name = "txtScanCode";
-            this.txtScanCode.Size = new System.Drawing.Size(175, 20);
-            this.txtScanCode.TabIndex = 1;
-            this.txtScanCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtScanCode_KeyPress);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Product code";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(568, 46);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Quantity";
-            // 
-            // txtQuantity
-            // 
-            this.txtQuantity.Location = new System.Drawing.Point(635, 40);
-            this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(100, 20);
-            this.txtQuantity.TabIndex = 8;
             // 
             // Column1
             // 
@@ -312,6 +296,23 @@
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             // 
+            // txtScanCode
+            // 
+            this.txtScanCode.Location = new System.Drawing.Point(101, 13);
+            this.txtScanCode.Name = "txtScanCode";
+            this.txtScanCode.Size = new System.Drawing.Size(175, 20);
+            this.txtScanCode.TabIndex = 1;
+            this.txtScanCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtScanCode_KeyPress);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(24, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Product code";
+            // 
             // PosGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -347,7 +348,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtScanCode;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnFind;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtSubTotal;
         private System.Windows.Forms.Label label5;
