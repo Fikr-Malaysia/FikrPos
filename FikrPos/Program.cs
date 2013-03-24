@@ -69,11 +69,11 @@ namespace FikrPos
             if (MessageBox.Show("Are you sure you want to logout?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Program.graceClose = true;
-                if(AppFeatures.userLogin.role.Equals(Roles.Admin))
+                if(AppFeatures.userLogin.Role.Equals(Roles.Admin))
                 {
                     Program.adminWindow.Close();
                 }
-                else if (AppFeatures.userLogin.role.Equals(Roles.Cashier))
+                else if (AppFeatures.userLogin.Role.Equals(Roles.Cashier))
                 {
                     Program.posGui.Close();
                 }
@@ -101,15 +101,15 @@ namespace FikrPos
         {
             FikrPosDataContext db = new FikrPosDataContext();
             return (from u in db.AppUsers
-                            where u.username == username
-                            && u.password == Cryptho.Encrypt(password)
+                            where u.Username == username
+                            && u.Password == Cryptho.Encrypt(password)
                             select u).SingleOrDefault();
 
         }
 
         internal static void UserEnter()
         {
-            if (AppFeatures.userLogin.role.Equals(Roles.Admin))
+            if (AppFeatures.userLogin.Role.Equals(Roles.Admin))
             {
                 if (Program.adminWindow != null)
                 {
@@ -119,7 +119,7 @@ namespace FikrPos
                 Program.adminWindow = new AdminWindow();
                 Program.adminWindow.ShowDialog();
             }
-            else if (AppFeatures.userLogin.role.Equals(Roles.Cashier))
+            else if (AppFeatures.userLogin.Role.Equals(Roles.Cashier))
             {
                 if (Program.posGui != null)
                 {

@@ -1,24 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="FikrPos">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.875" name="FikrPos">
   <DataContextMoniker Name="/FikrPosDataContext" />
   <nestedChildShapes>
-    <classShape Id="1842c246-5c95-4a15-be4f-8c369e5e9f43" absoluteBounds="1.25, 2.125, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/FikrPosDataContext/AppUser" />
-      <nestedChildShapes>
-        <elementListCompartment Id="eea57b25-9915-432c-88a2-f06b4b7c00ad" absoluteBounds="1.2650000000000001, 2.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="5e97e584-8389-4aa3-94ad-c36e810b2f02" absoluteBounds="4.25, 2.125, 2, 2.3478011067708335">
-      <DataClassMoniker Name="/FikrPosDataContext/Product" />
-      <nestedChildShapes>
-        <elementListCompartment Id="3d1b112a-8d40-4ad6-bc60-9be9eec56995" absoluteBounds="4.265, 2.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="adfdd41c-5848-468a-b098-24117b3cc61f" absoluteBounds="1.5, 0.5, 2, 1.5785953776041666">
+    <classShape Id="f1da50cf-06ea-4025-a8a1-2b525ad08d87" absoluteBounds="1, 1, 2, 1.5785953776041666">
       <DataClassMoniker Name="/FikrPosDataContext/AppInfo" />
       <nestedChildShapes>
-        <elementListCompartment Id="701f4687-cf0c-4bfd-abd0-610d18fb18b6" absoluteBounds="1.5150000000000001, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="b38c5712-4aa0-403a-8a4a-ca0299aaa1aa" absoluteBounds="1.0150000000000001, 1.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="79d0b00c-95d3-4b49-a077-2516b0f7c0b3" absoluteBounds="3.75, 2.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/FikrPosDataContext/AppUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="904dd807-70b4-4341-91e5-bf39305dd152" absoluteBounds="3.765, 2.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="69afd3d7-d402-481d-b220-0b96e43a11ff" absoluteBounds="3.75, 4.125, 2, 2.5401025390625">
+      <DataClassMoniker Name="/FikrPosDataContext/Product" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f81a3206-ecf0-4ebb-8942-d7e1b26f38f3" absoluteBounds="3.7649999999999997, 4.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7a8a90ca-3dcd-4c7a-9827-86a58d4b9130" absoluteBounds="0.5, 3.25, 2, 1.3862939453125">
+      <DataClassMoniker Name="/FikrPosDataContext/Sale" />
+      <nestedChildShapes>
+        <elementListCompartment Id="96ddd0a1-f6a7-4d20-8c77-2be5e64ee1c8" absoluteBounds="0.51500000000000012, 3.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.75 : 3.47679768880208); (2.5 : 3.47679768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/FikrPosDataContext/AppUser/AppUser_Sale" />
+      <nodes>
+        <classShapeMoniker Id="79d0b00c-95d3-4b49-a077-2516b0f7c0b3" />
+        <classShapeMoniker Id="7a8a90ca-3dcd-4c7a-9827-86a58d4b9130" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="ead73b6c-07e2-4e25-9bdb-bd0aaa7d53a3" absoluteBounds="1, 6.5, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/FikrPosDataContext/SaleDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d71dca10-191a-41c5-991b-aca6a73ef54a" absoluteBounds="1.0150000000000001, 6.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.75 : 5.59939647265625); (2.78125 : 5.59939647265625); (2.78125 : 6.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/FikrPosDataContext/Product/Product_SaleDetail" />
+      <nodes>
+        <classShapeMoniker Id="69afd3d7-d402-481d-b220-0b96e43a11ff" />
+        <classShapeMoniker Id="ead73b6c-07e2-4e25-9bdb-bd0aaa7d53a3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 4.6362939453125); (1.75 : 6.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/FikrPosDataContext/Sale/Sale_SaleDetail" />
+      <nodes>
+        <classShapeMoniker Id="7a8a90ca-3dcd-4c7a-9827-86a58d4b9130" />
+        <classShapeMoniker Id="ead73b6c-07e2-4e25-9bdb-bd0aaa7d53a3" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

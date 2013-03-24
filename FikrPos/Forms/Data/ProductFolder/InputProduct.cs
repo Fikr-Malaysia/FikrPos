@@ -31,28 +31,28 @@ namespace FikrPos.Forms.Data.ProductFolder
             if (FormMode == FormModeEnum.Insert)
             {   
                 product = new Product();
-                product.code = txtCode.Text;
-                product.name = txtName.Text;
-                product.price = Convert.ToDouble(txtPrice.Text);
-                product.unit = cboUnit.Text;
-                product.discount = Convert.ToDouble(txtDiscount.Text);
-                product.stock = Convert.ToInt32(txtStock.Text);
-                product.minimum_stock = Convert.ToInt32(txtMinimumStock.Text);
+                product.Code = txtCode.Text;
+                product.Name = txtName.Text;
+                product.Price = Convert.ToDouble(txtPrice.Text);
+                product.Unit = cboUnit.Text;
+                product.Discount = Convert.ToDouble(txtDiscount.Text);
+                product.Stock = Convert.ToInt32(txtStock.Text);
+                product.Minimum_Stock = Convert.ToInt32(txtMinimumStock.Text);
                 db.Products.InsertOnSubmit(product);
                 db.SubmitChanges();
             }
             else if (FormMode == FormModeEnum.Update)
             {
                 var product = (from p in db.Products
-                               where p.code.Equals(oldKey)
+                               where p.Code.Equals(oldKey)
                                select p).SingleOrDefault();
-                product.code = txtCode.Text;
-                product.name = txtName.Text;
-                product.price = Convert.ToDouble(txtPrice.Text);
-                product.unit = cboUnit.Text;
-                product.discount = Convert.ToDouble(txtDiscount.Text);
-                product.stock = Convert.ToInt32(txtStock.Text);
-                product.minimum_stock = Convert.ToInt32(txtMinimumStock.Text);
+                product.Code = txtCode.Text;
+                product.Name = txtName.Text;
+                product.Price = Convert.ToDouble(txtPrice.Text);
+                product.Unit = cboUnit.Text;
+                product.Discount = Convert.ToDouble(txtDiscount.Text);
+                product.Stock = Convert.ToInt32(txtStock.Text);
+                product.Minimum_Stock = Convert.ToInt32(txtMinimumStock.Text);
                 db.SubmitChanges();
             }
         }
@@ -62,17 +62,17 @@ namespace FikrPos.Forms.Data.ProductFolder
             oldKey = key;
             FikrPosDataContext db = new FikrPosDataContext();
             var product = (from p in db.Products
-                           where p.code.Equals(oldKey)
+                           where p.Code.Equals(oldKey)
                            select p).SingleOrDefault();
             if (product != null)
             {
-                txtCode.Text = product.code;
-                txtName.Text = product.name;
-                txtPrice.Text = product.price.ToString();
-                cboUnit.Text = product.unit;
-                txtDiscount.Text = product.discount.ToString();
-                txtStock.Text = product.stock.ToString();
-                txtMinimumStock.Text = product.minimum_stock.ToString();
+                txtCode.Text = product.Code;
+                txtName.Text = product.Name;
+                txtPrice.Text = product.Price.ToString();
+                cboUnit.Text = product.Unit;
+                txtDiscount.Text = product.Discount.ToString();
+                txtStock.Text = product.Stock.ToString();
+                txtMinimumStock.Text = product.Minimum_Stock.ToString();
             }
         }
     }

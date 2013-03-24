@@ -30,9 +30,9 @@ namespace FikrPos
                 FikrPosDataContext db = new FikrPosDataContext();
                 db.ExecuteCommand("Delete from AppUser");
                 AppUser root = new AppUser();
-                root.username = "admin";
-                root.password = Cryptho.Encrypt(admPwd.AdminPassword);
-                root.role = Roles.Admin;
+                root.Username = "admin";
+                root.Password = Cryptho.Encrypt(admPwd.AdminPassword);
+                root.Role = Roles.Admin;
                 db.AppUsers.InsertOnSubmit(root);
 
                 AppInfo appInfo = db.AppInfos.SingleOrDefault();

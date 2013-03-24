@@ -31,20 +31,20 @@ namespace FikrPos.Forms.Data.User
             if (FormMode == FormModeEnum.Insert)
             {   
                 appUser = new AppUser();
-                appUser.username = txtUsername.Text;
-                appUser.password = Cryptho.Encrypt(txtPassword.Text);
-                appUser.role = cboRole.Text;
+                appUser.Username = txtUsername.Text;
+                appUser.Password = Cryptho.Encrypt(txtPassword.Text);
+                appUser.Role = cboRole.Text;
                 db.AppUsers.InsertOnSubmit(appUser);
                 db.SubmitChanges();
             }
             else if (FormMode == FormModeEnum.Update)
             {
                 var appUser = (from u in db.AppUsers
-                               where u.username.Equals(oldKey)
+                               where u.Username.Equals(oldKey)
                                select u).SingleOrDefault();
-                appUser.username = txtUsername.Text;
-                appUser.password = Cryptho.Encrypt(txtPassword.Text);
-                appUser.role = cboRole.Text;
+                appUser.Username = txtUsername.Text;
+                appUser.Password = Cryptho.Encrypt(txtPassword.Text);
+                appUser.Role = cboRole.Text;
                 db.SubmitChanges();
             }
         }
@@ -54,13 +54,13 @@ namespace FikrPos.Forms.Data.User
             oldKey = key;
             FikrPosDataContext db = new FikrPosDataContext();
             var appUser = (from u in db.AppUsers
-                           where u.username.Equals(oldKey)
+                           where u.Username.Equals(oldKey)
                            select u).SingleOrDefault();
             if (appUser != null)
             {
-                txtUsername.Text = appUser.username;
-                txtPassword.Text = Cryptho.Decrypt(appUser.password);
-                cboRole.Text = appUser.role;
+                txtUsername.Text = appUser.Username;
+                txtPassword.Text = Cryptho.Decrypt(appUser.Password);
+                cboRole.Text = appUser.Role;
             }
         }
     }

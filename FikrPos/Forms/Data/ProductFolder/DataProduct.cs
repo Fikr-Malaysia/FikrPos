@@ -26,7 +26,7 @@ namespace FikrPos.Forms.Data.ProductFolder
             
             FikrPosDataContext db = new FikrPosDataContext();
             var product = from p in db.Products 
-                           select new { Code = p.code, Name = p.name, Price = p.price, Stock = p.stock, MinimumStock = p.minimum_stock };
+                           select new { p.Code, p.Name, p.Price, p.Stock, p.Minimum_Stock };
 
             if (dataGridView1.SelectedCells.Count > 0)
             {
@@ -83,7 +83,7 @@ namespace FikrPos.Forms.Data.ProductFolder
             {
                 FikrPosDataContext db = new FikrPosDataContext();
                 var product = (from p in db.Products
-                               where p.code.Equals(oldKey)
+                               where p.Code.Equals(oldKey)
                                select p).SingleOrDefault();
                 db.Products.DeleteOnSubmit(product);
                 db.SubmitChanges();

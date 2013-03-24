@@ -25,7 +25,7 @@ namespace FikrPos.Forms.Data
         {
             FikrPosDataContext db = new FikrPosDataContext();
             var appUsers = from u in db.AppUsers
-                           select new { Username = u.username, Role = u.role };
+                           select new { u.Username, u.Role };
 
             if (dataGridView1.SelectedCells.Count > 0)
             {
@@ -81,7 +81,7 @@ namespace FikrPos.Forms.Data
             {
                 FikrPosDataContext db = new FikrPosDataContext();
                 var appUser = (from u in db.AppUsers
-                               where u.username.Equals(username)
+                               where u.Username.Equals(username)
                                select u).SingleOrDefault();
                 db.AppUsers.DeleteOnSubmit(appUser);
                 db.SubmitChanges();
