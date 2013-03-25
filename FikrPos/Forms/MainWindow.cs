@@ -11,14 +11,15 @@ using FikrPos.Forms.Data.ProductFolder;
 
 namespace FikrPos.Forms
 {
-    public partial class AdminWindow : Form
+    public partial class MainWindow : Form
     {        
         private int childFormNumber = 0;
 
-        public AdminWindow()
+        public MainWindow()
         {
             InitializeComponent();
             Program.graceClose = false;
+            
         }
 
         public void ShowNewForm(object sender, EventArgs e)
@@ -162,6 +163,11 @@ namespace FikrPos.Forms
             form.MdiParent = this;
             form.WindowState = FormWindowState.Maximized;
             form.Show();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("test");
         }
     }
 }

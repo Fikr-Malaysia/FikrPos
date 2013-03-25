@@ -12,7 +12,7 @@ namespace FikrPos
     {
         static string EventLogName = "FikrPos";
         public static StartupForm startupForm;
-        public static AdminWindow adminWindow;
+        public static MainWindow adminWindow;
         public static PosGui posGui;
         public static bool graceClose = false;
         public static FikrPosDataContext db = null;
@@ -129,7 +129,7 @@ namespace FikrPos
                     Program.adminWindow.Dispose();
                 }
 
-                Program.adminWindow = new AdminWindow();
+                Program.adminWindow = new MainWindow();
                 Program.adminWindow.ShowDialog();
             }
             else if (AppFeatures.userLogin.Role.Equals(Roles.Cashier))
