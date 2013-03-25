@@ -13,11 +13,12 @@ namespace FikrPosTest
     [TestClass]
     public class LinqTest
     {
+        FikrPosDataContext db;
+        AppUser appUser;
+
         public LinqTest()
         {
-            //
-            // TODO: Add constructor logic here
-            //
+            db = FikrPos.Program.getDb();
         }
 
         private TestContext testContextInstance;
@@ -61,10 +62,86 @@ namespace FikrPosTest
         #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void PrepareDataTest()
         {
-            FikrPosDataContext db = FikrPos.Program.getDb();
+            appUser = db.AppUsers.Where(u => u.Username == "eko").SingleOrDefault();
+            insertProducts();
+            insertSale();
+            
+        }
+
+        private void insertSale()
+        {
+            db.ExecuteCommand("Delete from Sale");
+
+            Sale sale;
+            sale = new Sale();
+            sale.UserId = appUser.ID;
+            sale.Date = new DateTime();
+            
+            Product p0 = db.Products.Where(p=>p.Code=="000").SingleOrDefault();
+            Product p1 = db.Products.Where(p => p.Code == "001").SingleOrDefault();
+            Product p2 = db.Products.Where(p => p.Code == "002").SingleOrDefault();
+            
+            SaleDetail saleDetail;
+            saleDetail = new SaleDetail();
+            saleDetail.Product = p0;
+            saleDetail.Qty = 5;
+            sale.SaleDetails.Add(saleDetail);
+
+            saleDetail = new SaleDetail();
+            saleDetail.Product = p1;
+            saleDetail.Qty = 2;
+            sale.SaleDetails.Add(saleDetail);
+
+            db.Sales.InsertOnSubmit(sale);
+            db.SubmitChanges();
+
+            
+
+            
+
+        }
+
+        private void insertProducts()
+        {
             db.ExecuteCommand("Delete from Product");
+
+            Product p;
+            p = new Product();
+            p.Code = "000";
+            p.Name = "Product 000";
+            p.Price = 100;
+            p.Stock = 10;
+            p.Minimum_Stock = 1;
+            p.Tax = 0;
+            p.Discount = 0;
+            p.Unit = "box";
+            db.Products.InsertOnSubmit(p);
+
+
+            p = new Product();
+            p.Code = "001";
+            p.Name = "Product 001";
+            p.Price = 1000;
+            p.Stock = 100;
+            p.Minimum_Stock = 10;
+            p.Tax = 1;
+            p.Discount = 1;
+            p.Unit = "pcs";
+            db.Products.InsertOnSubmit(p);
+
+            p = new Product();
+            p.Code = "002";
+            p.Name = "Product 002";
+            p.Price = 2000;
+            p.Stock = 200;
+            p.Minimum_Stock = 20;
+            p.Tax = 2;
+            p.Discount = 2;
+            p.Unit = "dus";
+            db.Products.InsertOnSubmit(p);
+
             db.SubmitChanges();
         }
     }
