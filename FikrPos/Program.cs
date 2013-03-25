@@ -8,7 +8,7 @@ using FikrPos.Models;
 
 namespace FikrPos
 {
-    static class Program
+    public static class Program
     {
         static string EventLogName = "FikrPos";
         public static StartupForm startupForm;
@@ -143,7 +143,7 @@ namespace FikrPos
             }
         }
 
-        internal static FikrPosDataContext getDb()
+        public static FikrPosDataContext getDb()
         {
             if (db == null)
             {

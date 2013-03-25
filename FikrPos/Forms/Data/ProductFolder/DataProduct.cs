@@ -42,8 +42,17 @@ namespace FikrPos.Forms.Data.ProductFolder
             dataGridView1.DataSource = product;
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[dataGridView1.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            
-            dataGridView1.Rows[oldRow].Cells[oldCol].Selected = true;
+
+
+            if (oldRow >= dataGridView1.Rows.Count)
+            {
+                oldRow = dataGridView1.Rows.Count - 1;
+            }
+
+            if (dataGridView1.Rows.Count > 0)
+            {
+                dataGridView1.Rows[oldRow].Cells[oldCol].Selected = true;
+            }
             dataGridView1.Focus();
         }
 

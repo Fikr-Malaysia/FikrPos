@@ -53,6 +53,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Transactions" />
@@ -66,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppFeatures.cs" />
-    <Compile Include="ApplicationStartup.cs" />
     <Compile Include="AppStates.cs" />
     <Compile Include="DataManager.cs" />
     <Compile Include="FikrPos.cs">

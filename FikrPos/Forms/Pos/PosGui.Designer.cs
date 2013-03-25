@@ -31,7 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblAddress = new System.Windows.Forms.Label();
             this.lblCompanyName = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -56,6 +55,7 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtScanCode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblAddress = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -73,9 +73,9 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 73F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(792, 352);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(792, 424);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel1
@@ -86,17 +86,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(786, 67);
+            this.panel1.Size = new System.Drawing.Size(786, 94);
             this.panel1.TabIndex = 0;
-            // 
-            // lblAddress
-            // 
-            this.lblAddress.AutoSize = true;
-            this.lblAddress.Location = new System.Drawing.Point(9, 43);
-            this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(50, 13);
-            this.lblAddress.TabIndex = 1;
-            this.lblAddress.Text = "[address]";
             // 
             // lblCompanyName
             // 
@@ -116,9 +107,9 @@
             this.panel2.Controls.Add(this.txtScanCode);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 76);
+            this.panel2.Location = new System.Drawing.Point(3, 103);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(786, 273);
+            this.panel2.Size = new System.Drawing.Size(786, 318);
             this.panel2.TabIndex = 1;
             // 
             // panel3
@@ -134,7 +125,7 @@
             this.panel3.Controls.Add(this.txtDiscount);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.txtSubTotal);
-            this.panel3.Location = new System.Drawing.Point(27, 104);
+            this.panel3.Location = new System.Drawing.Point(27, 149);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(750, 160);
             this.panel3.TabIndex = 4;
@@ -251,7 +242,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(27, 39);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(750, 59);
+            this.dataGridView1.Size = new System.Drawing.Size(750, 104);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             // 
@@ -313,11 +304,20 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Product code";
             // 
+            // lblAddress
+            // 
+            this.lblAddress.AutoSize = true;
+            this.lblAddress.Location = new System.Drawing.Point(9, 43);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(50, 13);
+            this.lblAddress.TabIndex = 1;
+            this.lblAddress.Text = "[address]";
+            // 
             // PosGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 352);
+            this.ClientSize = new System.Drawing.Size(792, 424);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.KeyPreview = true;
@@ -343,7 +343,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblCompanyName;
-        private System.Windows.Forms.Label lblAddress;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtScanCode;
@@ -367,5 +366,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.Label lblAddress;
     }
 }

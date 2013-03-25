@@ -11,9 +11,9 @@ namespace FikrPos.Forms.Data.ProductFolder
 {
     public partial class InputProduct : Form
     {
-        public FormModeEnum FormMode;
+        
         public Product product;
-
+        private FormModeEnum _formMode;
         private string oldKey;
         public InputProduct()
         {
@@ -76,7 +76,30 @@ namespace FikrPos.Forms.Data.ProductFolder
                 txtTax.Text = product.Tax.ToString();
                 txtStock.Text = product.Stock.ToString();
                 txtMinimumStock.Text = product.Minimum_Stock.ToString();
-                
+            }
+        }
+
+        public void initFields()
+        {
+            txtDiscount.Text = "0";
+            txtTax.Text = "0";
+            txtStock.Text = "0";
+            txtMinimumStock.Text = "0";
+        }
+
+        public FormModeEnum FormMode
+        {
+            get 
+            {
+                return _formMode;
+            }
+            set
+            {
+                if (value == FormModeEnum.Insert)
+                {
+                    initFields();                 
+                }
+                _formMode = value;
             }
         }
     }
