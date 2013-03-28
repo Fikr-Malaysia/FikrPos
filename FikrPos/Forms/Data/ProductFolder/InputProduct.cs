@@ -27,7 +27,7 @@ namespace FikrPos.Forms.Data.ProductFolder
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            FikrPosDataContext db = new FikrPosDataContext();
+            FikrPosDataContext db = Program.getDb();
             if (FormMode == FormModeEnum.Insert)
             {   
                 product = new Product();
@@ -62,7 +62,7 @@ namespace FikrPos.Forms.Data.ProductFolder
         internal void prepareForm(string key)
         {
             oldKey = key;
-            FikrPosDataContext db = new FikrPosDataContext();
+            FikrPosDataContext db = Program.getDb();
             var product = (from p in db.Products
                            where p.Code.Equals(oldKey)
                            select p).SingleOrDefault();

@@ -23,7 +23,7 @@ namespace FikrPos.Forms.Data
 
         private void readData()
         {
-            FikrPosDataContext db = new FikrPosDataContext();
+            FikrPosDataContext db = Program.getDb();
             var appUsers = from u in db.AppUsers
                            select new { u.Username, u.Role };
 
@@ -87,7 +87,7 @@ namespace FikrPos.Forms.Data
             string username = getKey();
             if (MessageBox.Show("Are you sure yo want to delete this user", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                FikrPosDataContext db = new FikrPosDataContext();
+                FikrPosDataContext db = Program.getDb();
                 var appUser = (from u in db.AppUsers
                                where u.Username.Equals(username)
                                select u).SingleOrDefault();

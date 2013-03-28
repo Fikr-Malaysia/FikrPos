@@ -22,18 +22,20 @@ namespace FikrPos.Forms
         private void btnOk_Click(object sender, EventArgs e)
         {
 
-            AppFeatures.userLogin = Program.Login(cboUsername.Text, txtPassword.Text);
+            Program.userLogin = Program.Login(cboUsername.Text, txtPassword.Text);
             
-            if (AppFeatures.userLogin == null)
+            if (Program.userLogin == null)
             {
-                MessageBox.Show("Empty");                
+                MessageBox.Show("Please check your username and password again");
             }
             else
             {
-                Program.UserEnter();
+                
                 Program.graceClose = true;
-                Close();
+                Hide();
                 Program.graceClose = false;
+
+                Program.UserEnter();
             }
 
         }

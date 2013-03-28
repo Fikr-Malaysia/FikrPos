@@ -24,7 +24,7 @@ namespace FikrPos.Forms.Data.ProductFolder
         private void readData()
         {
             
-            FikrPosDataContext db = new FikrPosDataContext();
+            FikrPosDataContext db = Program.getDb();
             var product = from p in db.Products 
                            select p;
 
@@ -91,7 +91,7 @@ namespace FikrPos.Forms.Data.ProductFolder
             string oldKey = getKey();
             if (MessageBox.Show("Are you sure yo want to delete this product?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                FikrPosDataContext db = new FikrPosDataContext();
+                FikrPosDataContext db = Program.getDb();
                 var product = (from p in db.Products
                                where p.Code.Equals(oldKey)
                                select p).SingleOrDefault();

@@ -19,7 +19,16 @@ namespace FikrPos
             InitializeComponent();
             Visible = false;
 
-            AppFeatures.StartupPath = Application.StartupPath;
+            RegistrySettings.getInstance().loadValues();
+            if (RegistrySettings.getInstance().newInstall == null)
+            {
+                MessageBox.Show("As this is your first time running this application, please configure your database connection");
+                Settings settings = new Settings();
+                DialogResult dr = settings.ShowDialog();
+
+            }
+
+            Program.StartupPath = Application.StartupPath;
             DataManager.getInstance().initData();
 
             if (AppStates.appInfo==null || (AppStates.appInfo!=null && AppStates.appInfo.IsInit == 1))
@@ -27,7 +36,7 @@ namespace FikrPos
                 AdministratorPassword admPwd = new AdministratorPassword();
                 admPwd.ShowDialog();
 
-                FikrPosDataContext db = new FikrPosDataContext();
+                FikrPosDataContext db = Program.getDb();
                 db.ExecuteCommand("Delete from AppUser");
                 AppUser root = new AppUser();
                 root.Username = admPwd.AdminUsername;
@@ -45,7 +54,7 @@ namespace FikrPos
                 MessageBox.Show("Now you can login with admin username and password");
             }
 
-            if (AppFeatures.userLogin == null)
+            if (Program.userLogin == null)
             {
                 Login login = new Login();
                 login.ShowDialog();

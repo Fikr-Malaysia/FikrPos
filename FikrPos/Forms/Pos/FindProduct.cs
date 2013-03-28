@@ -20,7 +20,7 @@ namespace FikrPos.Forms.Pos
 
         private void readData()
         {
-            FikrPosDataContext db = new FikrPosDataContext();
+            FikrPosDataContext db = Program.getDb();
 
             var product = from p in db.Products
                           where p.Name.Contains(txtName.Text)

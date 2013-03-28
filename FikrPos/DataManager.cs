@@ -25,7 +25,7 @@ namespace FikrPos
 
         public void initData()
         {
-            FikrPosDataContext db = new FikrPosDataContext();
+            FikrPosDataContext db = Program.getDb();
             AppStates.appInfo = db.AppInfos.SingleOrDefault();
         }
     }

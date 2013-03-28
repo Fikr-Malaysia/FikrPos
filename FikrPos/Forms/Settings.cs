@@ -6,50 +6,93 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace FikrPos.Forms
 {
     public partial class Settings : Form
     {
+        bool connectionSucces = false;
         public Settings()
         {
             InitializeComponent();
-            RegistrySettings.loadValues();
+            RegistrySettings.getInstance().loadValues();
             ReadValues();
         }
         private void ReadValues()
         {
-            txtHost.Text = RegistrySettings.SqlHost;
-            cboDatabaseType.Text = RegistrySettings.dbType;
-            optServerLogin.Checked = RegistrySettings.serverLogin;
-            optWindowsLogin.Checked = RegistrySettings.windowsLogin;
-            txtDatabase.Text = RegistrySettings.SqlDatabase;
-            txtUsername.Text = RegistrySettings.SqlUsername;
-            txtPassword.Text = RegistrySettings.SqlPassword;
-            cboLogLevel.Text = RegistrySettings.loggingLevel;
+            txtHost.Text = RegistrySettings.getInstance().SqlHost;
+            cboDatabaseType.Text = RegistrySettings.getInstance().dbType;
+            optServerLogin.Checked = RegistrySettings.getInstance().serverLogin;
+            optWindowsLogin.Checked = RegistrySettings.getInstance().windowsLogin;
+            txtDatabase.Text = RegistrySettings.getInstance().SqlDatabase;
+            txtUsername.Text = RegistrySettings.getInstance().SqlUsername;
+            txtPassword.Text = RegistrySettings.getInstance().SqlPassword;
+            cboLogLevel.Text = RegistrySettings.getInstance().loggingLevel;
         }
 
         private void SaveValues()
         {
 
-            RegistrySettings.dbType = cboDatabaseType.Text;
-            RegistrySettings.windowsLogin = optWindowsLogin.Checked;
-            RegistrySettings.serverLogin = optServerLogin.Checked;
-            RegistrySettings.SqlHost = txtHost.Text;
-            RegistrySettings.SqlDatabase = txtDatabase.Text;
-            RegistrySettings.SqlUsername = txtUsername.Text;
-            RegistrySettings.SqlPassword = txtPassword.Text;
-            RegistrySettings.loggingLevel = cboLogLevel.Text;
+            RegistrySettings.getInstance().dbType = cboDatabaseType.Text;
+            RegistrySettings.getInstance().windowsLogin = optWindowsLogin.Checked;
+            RegistrySettings.getInstance().serverLogin = optServerLogin.Checked;
+            RegistrySettings.getInstance().SqlHost = txtHost.Text;
+            RegistrySettings.getInstance().SqlDatabase = txtDatabase.Text;
+            RegistrySettings.getInstance().SqlUsername = txtUsername.Text;
+            RegistrySettings.getInstance().SqlPassword = txtPassword.Text;
+            RegistrySettings.getInstance().loggingLevel = cboLogLevel.Text;
         }
         
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (!connectionSucces)
+            {
+                MessageBox.Show("Please test your database connection first");
+                return;
+            }
+
+            //Mark that it's success 
+            RegistrySettings.getInstance().installationSuccess();
             SaveValues();
-            RegistrySettings.writeValues();
-            RegistrySettings.loadValues();
-            AppFeatures.getInstance().resetConnection();
+            RegistrySettings.getInstance().writeValues();
+            RegistrySettings.getInstance().loadValues();
             Close();            
+        }
+
+        private void btnTestDatabaseConnection_Click(object sender, EventArgs e)
+        {
+            connectionSucces = false;
+            SaveValues();
+            RegistrySettings.getInstance().writeValues();
+            Program.closeConnection();
+            FikrPosDataContext db = Program.getDb();
+            if (db.Connection.State == ConnectionState.Closed)
+            {
+                try
+                {
+
+                    db.Connection.Open();
+                    connectionSucces = true;
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message, "Database Connection");
+                }
+            }
+
+            if (connectionSucces)
+            {
+                MessageBox.Show("Connection success");
+                db.Connection.Close();
+            }
+            
+        }
+
+        private void Settings_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = !connectionSucces;
         }
     }
 }

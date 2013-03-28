@@ -10,7 +10,7 @@ section
 	File /r "source\*"
 	writeUninstaller $INSTDIR\uninstaller.exe
 	CreateDirectory "${shortcutDir}" 
-	createShortCut "${shortcutDir}\Fikr Pos.lnk" "$INSTDIR\FikrPos.exe"  "$INSTDIR\images\cash.ico" 
+	createShortCut "${shortcutDir}\Fikr Pos.lnk" "$INSTDIR\FikrPos.exe"  "" "$INSTDIR\images\cash.ico" 
 	createShortCut "${shortcutDir}\Uninstall FikrPos.lnk" "$INSTDIR\uninstaller.exe"
 sectionEnd
 	section "Uninstall"

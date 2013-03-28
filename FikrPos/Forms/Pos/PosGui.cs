@@ -31,7 +31,7 @@ namespace FikrPos.Forms.Pos
             posState = PosStateEnum.EnteringTransaction;
             hashSaleDetail = new Hashtable();
             sale = new Sale();
-            sale.UserId = AppFeatures.userLogin.ID;
+            sale.UserId = Program.userLogin.ID;
             sale.Date = new DateTime();
 
             txtDiscount.Text = "";

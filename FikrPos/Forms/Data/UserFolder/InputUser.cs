@@ -27,7 +27,7 @@ namespace FikrPos.Forms.Data.User
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            FikrPosDataContext db = new FikrPosDataContext();
+            FikrPosDataContext db = Program.getDb();
             if (FormMode == FormModeEnum.Insert)
             {   
                 appUser = new AppUser();
@@ -52,7 +52,7 @@ namespace FikrPos.Forms.Data.User
         internal void prepareForm(string key)
         {
             oldKey = key;
-            FikrPosDataContext db = new FikrPosDataContext();
+            FikrPosDataContext db = Program.getDb();
             var appUser = (from u in db.AppUsers
                            where u.Username.Equals(oldKey)
                            select u).SingleOrDefault();

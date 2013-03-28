@@ -169,5 +169,26 @@ namespace FikrPos.Forms
         {
             MessageBox.Show("test");
         }
+
+        internal void startAutoupdateTimer()
+        {
+            timerAutoUpdate.Enabled = true;
+        }
+
+        private void timerAutoUpdate_Tick(object sender, EventArgs e)
+        {
+            timerAutoUpdate.Enabled = false;
+            if (AppStates.appInfo != null)//assume that company name must be initialized!
+            {
+                AutoupdateEngine.automaticUpdate = true;
+                checkLatestSoftwareUpdate();
+            }
+        }
+
+        private void checkLatestSoftwareUpdate()
+        {
+            //AutoupdateEngine.CheckForUpdates(new NAppUpdate.Framework.Sources.SimpleWebSource("http://fikrpos.swdevbali.com/fikrpos.xml"));
+            AutoupdateEngine.CheckForUpdates(new NAppUpdate.Framework.Sources.SimpleWebSource("http://localhost/fikrpos/fikrpos.xml"));
+        }
     }
 }
