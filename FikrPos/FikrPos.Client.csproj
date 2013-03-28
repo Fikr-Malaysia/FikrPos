@@ -48,8 +48,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>cash.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -214,7 +215,6 @@
       <DependentUpon>StartupForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="app.manifest" />
     <None Include="FikrPos.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>FikrPos.designer.cs</LastGenOutput>
@@ -270,7 +270,11 @@
     <None Include="Resources\background.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="cash.ico" />
     <Content Include="Database\FikrPos.sql" />
+    <Content Include="images\cash.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

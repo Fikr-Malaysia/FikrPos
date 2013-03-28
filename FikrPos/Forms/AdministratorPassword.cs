@@ -14,6 +14,7 @@ namespace FikrPos.Client.Forms
         bool graceClose = false;
         bool valid = false;
         public string AdminPassword;
+        public string AdminUsername;
         public AdministratorPassword()
         {
             InitializeComponent();
@@ -21,8 +22,10 @@ namespace FikrPos.Client.Forms
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            valid = true;
+            txtAdminUsername_Validating(null, null);
             txtNewPassword_Validating(null, null);
-            txtConfirmPassword_Validating(null, null);
+            txtConfirmPassword_Validating(null, null);            
             if (valid)
             {
                 valid = txtNewPassword.Text.Equals(txtConfirmPassword.Text);
@@ -34,6 +37,7 @@ namespace FikrPos.Client.Forms
                 DialogResult = DialogResult.OK;
                 graceClose = true;
                 AdminPassword = txtConfirmPassword.Text;
+                AdminUsername = txtAdminUsername.Text;
                 Close();
             }
         }
@@ -43,10 +47,10 @@ namespace FikrPos.Client.Forms
             if (!txtNewPassword.Text.Equals(txtConfirmPassword.Text))
             {
                 errorProvider1.SetError(btnOK, "Password not match");
-                valid = false;
+                valid = false && valid;
                 return;
             }
-            valid = true;
+            valid = true && valid;
             errorProvider1.Clear();
         }
 
@@ -55,10 +59,10 @@ namespace FikrPos.Client.Forms
             if (txtNewPassword.Text.Equals(""))
             {
                 errorProvider1.SetError(txtNewPassword, "Please supply new password");
-                valid = false;
+                valid = false && valid;
                 return;
             }
-            valid = true;
+            valid = true && valid;
             errorProvider1.Clear();
 
         }
@@ -69,10 +73,10 @@ namespace FikrPos.Client.Forms
             if (txtConfirmPassword.Text.Equals(""))
             {
                 errorProvider1.SetError(txtConfirmPassword, "Please supply new password");
-                valid = false;
+                valid = false && valid;
                 return;
             }
-            valid = true;
+            valid = true && valid;
             errorProvider1.Clear();
         }
 
@@ -84,6 +88,19 @@ namespace FikrPos.Client.Forms
             }
             graceClose = false;
             e.Cancel = true;
+        }
+
+        private void txtAdminUsername_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtAdminUsername.Text.Equals(""))
+            {
+                errorProvider1.SetError(txtConfirmPassword, "Please supply admin username");
+                valid = false && valid;
+                return;
+            }
+            valid = true && valid;
+            errorProvider1.Clear();
+            
         }
     }
 }

@@ -35,22 +35,24 @@
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtAdminUsername = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNewPassword
             // 
-            this.txtNewPassword.Location = new System.Drawing.Point(184, 10);
+            this.txtNewPassword.Location = new System.Drawing.Point(210, 35);
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.PasswordChar = '*';
             this.txtNewPassword.Size = new System.Drawing.Size(210, 20);
-            this.txtNewPassword.TabIndex = 0;
+            this.txtNewPassword.TabIndex = 1;
             this.txtNewPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtNewPassword_Validating);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(39, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(165, 13);
             this.label1.TabIndex = 1;
@@ -59,7 +61,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 39);
+            this.label2.Location = new System.Drawing.Point(39, 64);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(158, 13);
             this.label2.TabIndex = 3;
@@ -67,19 +69,19 @@
             // 
             // txtConfirmPassword
             // 
-            this.txtConfirmPassword.Location = new System.Drawing.Point(184, 39);
+            this.txtConfirmPassword.Location = new System.Drawing.Point(210, 64);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.PasswordChar = '*';
             this.txtConfirmPassword.Size = new System.Drawing.Size(210, 20);
-            this.txtConfirmPassword.TabIndex = 1;
+            this.txtConfirmPassword.TabIndex = 2;
             this.txtConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtConfirmPassword_Validating);
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(319, 75);
+            this.btnOK.Location = new System.Drawing.Point(345, 90);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 2;
+            this.btnOK.TabIndex = 3;
             this.btnOK.Text = "&OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -89,13 +91,33 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(39, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(85, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Admin username";
+            // 
+            // txtAdminUsername
+            // 
+            this.txtAdminUsername.Location = new System.Drawing.Point(210, 9);
+            this.txtAdminUsername.Name = "txtAdminUsername";
+            this.txtAdminUsername.Size = new System.Drawing.Size(210, 20);
+            this.txtAdminUsername.TabIndex = 0;
+            this.txtAdminUsername.Text = "admin";
+            this.txtAdminUsername.Validating += new System.ComponentModel.CancelEventHandler(this.txtAdminUsername_Validating);
+            // 
             // AdministratorPassword
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(432, 105);
+            this.ClientSize = new System.Drawing.Size(432, 122);
             this.ControlBox = false;
+            this.Controls.Add(this.txtAdminUsername);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtConfirmPassword);
@@ -119,5 +141,7 @@
         private System.Windows.Forms.TextBox txtConfirmPassword;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.TextBox txtAdminUsername;
+        private System.Windows.Forms.Label label3;
     }
 }

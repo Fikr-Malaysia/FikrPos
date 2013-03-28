@@ -19,7 +19,7 @@ namespace FikrPos.Forms
         {
             InitializeComponent();
             Program.graceClose = false;
-            
+            Text = Application.ProductName + " version " + Application.ProductVersion;
         }
 
         public void ShowNewForm(object sender, EventArgs e)
@@ -144,7 +144,7 @@ namespace FikrPos.Forms
 
         private void AdminWindow_Load(object sender, EventArgs e)
         {
-            if (AppStates.appInfo.Company_Name == null)
+            if (AppStates.appInfo==null || AppStates.appInfo.Company_Name == null)
             {
                 MessageBox.Show("Please initialize your company data first");
                 
