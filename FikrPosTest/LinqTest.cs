@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FikrPos;
+using FikrPos.Models;
 
 namespace FikrPosTest
 {
@@ -64,10 +65,27 @@ namespace FikrPosTest
         [TestMethod]
         public void PrepareDataTest()
         {
+            insertAppUser();
             appUser = db.AppUsers.Where(u => u.Username == "eko").SingleOrDefault();
             insertProducts();
             insertSale();
             
+        }
+
+        private void insertAppUser()
+        {
+            db.ExecuteCommand("Delete from AppUser");
+            appUser = new AppUser();
+            appUser.Username = "eko";
+            appUser.Password = Cryptho.Encrypt("muhammad");
+            appUser.Role = Roles.Cashier;
+            db.AppUsers.InsertOnSubmit(appUser);
+            appUser = new AppUser();
+            appUser.Username = "admin";
+            appUser.Password = Cryptho.Encrypt("admin");
+            appUser.Role = Roles.Admin;
+            db.AppUsers.InsertOnSubmit(appUser);
+            db.SubmitChanges();
         }
 
         private void insertSale()

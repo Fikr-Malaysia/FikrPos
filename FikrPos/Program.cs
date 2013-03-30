@@ -65,6 +65,7 @@ namespace FikrPos
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             startupForm = new StartupForm();
+            startupForm.Visible = false;
             Application.Run(startupForm);
         }
 

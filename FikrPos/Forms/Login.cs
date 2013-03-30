@@ -32,9 +32,8 @@ namespace FikrPos.Forms
             {
                 
                 Program.graceClose = true;
-                Hide();
+                Close();
                 Program.graceClose = false;
-
                 Program.UserEnter();
             }
 

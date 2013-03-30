@@ -17,7 +17,10 @@ namespace FikrPos
         public StartupForm()
         {
             InitializeComponent();
-            Visible = false;
+            Width = 0;
+            Height = 0;
+            WindowState = FormWindowState.Minimized;
+            Hide();
 
             RegistrySettings.getInstance().loadValues();
             if (RegistrySettings.getInstance().newInstall == null)

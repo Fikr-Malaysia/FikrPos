@@ -34,12 +34,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(314, 253);
+            this.ClientSize = new System.Drawing.Size(156, 21);
+            this.ControlBox = false;
+            this.Enabled = false;
+            this.MaximizeBox = false;
             this.Name = "StartupForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Startup Form";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Text = "FikrPOS Malaysia";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.StartupForm_Load);
             this.ResumeLayout(false);
