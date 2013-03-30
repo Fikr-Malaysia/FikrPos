@@ -91,8 +91,9 @@ namespace FikrPosTest
                 db.Sales.InsertOnSubmit(sale);
                 db.SubmitChanges();
 
+                int saleDetailId;
                 Product p0 = db.Products.Where(p => p.Code == "000").SingleOrDefault();
-                db.InsertSaleDetail(p0.ID, p0.Stock + 2, p0.Tax, p0.Discount, p0.Price, sale.ID);
+                db.InsertSaleDetail(saleDetailId, p0.ID, p0.Stock + 2, p0.Tax, p0.Discount, p0.Price, sale.ID);
                 db.SubmitChanges();
             }
             catch (SqlException ex)
@@ -137,7 +138,7 @@ namespace FikrPosTest
             
 
             Product p0 = db.Products.Where(p=>p.Code=="000").SingleOrDefault();
-            db.InsertSaleDetail(p0.ID, 5, p0.Tax, p0.Discount, p0.Price, sale.ID);
+            db.InsertSaleDetail(-1, p0.ID, 5, p0.Tax, p0.Discount, p0.Price, sale.ID);
             db.SubmitChanges();
         }
 

@@ -14,7 +14,7 @@
         <elementListCompartment Id="904dd807-70b4-4341-91e5-bf39305dd152" absoluteBounds="3.39, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="c77aec4c-edda-4ab8-9a50-acecfc03615b" absoluteBounds="0.5, 3.875, 2, 2.3478011067708335">
+    <classShape Id="c77aec4c-edda-4ab8-9a50-acecfc03615b" isExpanded="false" absoluteBounds="0.5, 3.875, 2, 0.45">
       <DataClassMoniker Name="/FikrPosDataContext/SaleDetail" />
       <nestedChildShapes>
         <elementListCompartment Id="c76329ff-0aa0-4be2-a932-a64846b6e14f" absoluteBounds="0.51500000000000012, 4.335, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
@@ -26,7 +26,7 @@
         <elementListCompartment Id="fde6045e-54ac-4e49-bfb1-43c4201a956a" absoluteBounds="0.51500000000000012, 1.085, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.5 : 3.35740397135417); (1.5 : 3.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.5 : 3.35740397135417); (1.5 : 3.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/FikrPosDataContext/Sale/Sale_SaleDetail" />
       <nodes>
         <classShapeMoniker Id="53698698-d6fa-405c-895f-39c52e7ac4dd" />
@@ -46,7 +46,7 @@
         <elementListCompartment Id="650546b7-52f0-41d2-9eb2-a65213f668f6" absoluteBounds="3.515, 3.46, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.5 : 4.70755126953125); (2.5 : 4.70755126953125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(3.5 : 4.1); (2.5 : 4.1)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/FikrPosDataContext/Product/Product_SaleDetail" />
       <nodes>
         <classShapeMoniker Id="3f582766-d5ec-494f-b415-1e7a27b3aeba" />

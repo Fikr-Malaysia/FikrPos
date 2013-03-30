@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
+using System.Data.SqlClient;
 
 namespace FikrPos.Forms.Pos
 {
@@ -14,6 +15,7 @@ namespace FikrPos.Forms.Pos
     {        
         Hashtable hashSaleDetail;
         Sale sale;
+        //ArrayList saleDetails;
         PosStateEnum posState;
         public PosGui()
         {
@@ -30,6 +32,7 @@ namespace FikrPos.Forms.Pos
         {
             posState = PosStateEnum.EnteringTransaction;
             hashSaleDetail = new Hashtable();
+            //saleDetails = new ArrayList();
             sale = new Sale();
             sale.UserId = Program.userLogin.ID;
             sale.Date = new DateTime();
@@ -50,7 +53,7 @@ namespace FikrPos.Forms.Pos
             {
                 case (char)Keys.Return:
                     string productCode = txtScanCode.Text;
-                    enterProduct(productCode);
+                    enterSaleDetail(productCode);
                     break;
                 case (char) Keys.Escape:
                     txtScanCode.Text = "";
@@ -59,7 +62,7 @@ namespace FikrPos.Forms.Pos
         }
 
         
-        private void enterProduct(string productCode)
+        private void enterSaleDetail(string productCode)
         {
             FikrPosDataContext db = Program.getDb();
             var product = db.Products.Where(p => p.Code == productCode).SingleOrDefault();
@@ -101,6 +104,7 @@ namespace FikrPos.Forms.Pos
                     saleDetail.Extended_Price = flatPrice - discount + tax;
                     
                     sale.SaleDetails.Add(saleDetail);
+                    //saleDetails.Add(saleDetail);
                     hashSaleDetail.Add(productCode, saleDetail);
 
                     dataGridView1.Rows.Add(new Object[] { product.Code, product.Name, saleDetail.Qty, saleDetail.Price,saleDetail.Discount,saleDetail.Tax,saleDetail.Extended_Price });
@@ -192,7 +196,12 @@ namespace FikrPos.Forms.Pos
                 case Keys.F12:
                     if (posState == PosStateEnum.EnteringTransaction)
                     {
-                        posState = PosStateEnum.ReceivingPayment;
+                        //posState = PosStateEnum.ReceivingPayment;
+                        if (sale.SaleDetails.Count == 0)
+                        {
+                            MessageBox.Show("Please enter transaction first");
+                            return;
+                        }
                         ReceivePayment receivePayment = new ReceivePayment();
                         receivePayment.prepareForm(Convert.ToDouble(txtTotal.Text));
                         DialogResult dr = receivePayment.ShowDialog();
@@ -201,9 +210,22 @@ namespace FikrPos.Forms.Pos
                             FikrPosDataContext db = Program.getDb();
                             sale.Payment = receivePayment.payment;
                             sale.Change = receivePayment.change;
-                            db.Sales.InsertOnSubmit(sale);
-                            db.SubmitChanges();
-                            prepareNewPosTransaction();
+
+                            //insert sale detail using SP
+                            try
+                            {
+                                db.Transaction = db.Connection.BeginTransaction();
+                                db.Sales.InsertOnSubmit(sale);
+                                db.SubmitChanges();
+                                db.Transaction.Commit();
+                                prepareNewPosTransaction();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);                              
+                                db.Transaction.Rollback();
+                            }
+                            
                         }
                     }
                     break;

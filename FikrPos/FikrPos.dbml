@@ -30,6 +30,15 @@
       <Association Name="Sale_SaleDetail" Member="Sale" ThisKey="SaleID" OtherKey="ID" Type="Sale" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Product_SaleDetail" Member="Product" ThisKey="ProductID" OtherKey="ID" Type="Product" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
+    <InsertFunction FunctionId="FunctionId1">
+      <Argument Parameter="saleDetailID" Member="ID" />
+      <Argument Parameter="productID" Member="ProductID" />
+      <Argument Parameter="qty" Member="Qty" />
+      <Argument Parameter="tax" Member="Tax" />
+      <Argument Parameter="discount" Member="Discount" />
+      <Argument Parameter="price" Member="Price" />
+      <Argument Parameter="saleID" Member="SaleID" />
+    </InsertFunction>
   </Table>
   <Table Name="dbo.Sale" Member="Sales">
     <Type Name="Sale">
@@ -61,15 +70,6 @@
       <Association Name="Product_SaleDetail" Member="SaleDetails" ThisKey="ID" OtherKey="ProductID" Type="SaleDetail" />
     </Type>
   </Table>
-  <Function Name="dbo.InsertSaleDetail" Method="InsertSaleDetail">
-    <Parameter Name="ProductID" Parameter="productID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Qty" Parameter="qty" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Tax" Parameter="tax" Type="System.Double" DbType="Float" />
-    <Parameter Name="Discount" Parameter="discount" Type="System.Double" DbType="Float" />
-    <Parameter Name="Price" Parameter="price" Type="System.Double" DbType="Float" />
-    <Parameter Name="SaleID" Parameter="saleID" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.InsertProduct" Method="InsertProduct">
     <Parameter Name="Code" Parameter="code" Type="System.String" DbType="VarChar(255)" />
     <Parameter Name="Name" Parameter="name" Type="System.String" DbType="VarChar(255)" />
@@ -79,6 +79,16 @@
     <Parameter Name="Tax" Parameter="tax" Type="System.Double" DbType="Float" />
     <Parameter Name="Stock" Parameter="stock" Type="System.Int32" DbType="Int" />
     <Parameter Name="MinimumStock" Parameter="minimumStock" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Id="FunctionId1" Name="dbo.InsertSaleDetail" Method="InsertSaleDetail">
+    <Parameter Name="SaleDetailID" Parameter="saleDetailID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ProductID" Parameter="productID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Qty" Parameter="qty" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Tax" Parameter="tax" Type="System.Double" DbType="Float" />
+    <Parameter Name="Discount" Parameter="discount" Type="System.Double" DbType="Float" />
+    <Parameter Name="Price" Parameter="price" Type="System.Double" DbType="Float" />
+    <Parameter Name="SaleID" Parameter="saleID" Type="System.Int32" DbType="Int" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

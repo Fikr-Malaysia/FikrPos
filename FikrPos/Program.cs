@@ -166,6 +166,11 @@ namespace FikrPos
                 }
                 db = new FikrPosDataContext(connectionString);
             }
+
+            if (db.Connection.State == ConnectionState.Closed)
+            {
+                db.Connection.Open();
+            }
             return db;
         }
 

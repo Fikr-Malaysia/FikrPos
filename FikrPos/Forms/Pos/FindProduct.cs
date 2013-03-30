@@ -24,11 +24,10 @@ namespace FikrPos.Forms.Pos
 
             var product = from p in db.Products
                           where p.Name.Contains(txtName.Text)
-                          select new { p.Code, p.Name, p.Price, p.Discount, p.Tax };
+                          select new { p.Code, p.Name, p.Price, p.Discount, p.Tax, p.Stock };
 
 
             dataGridView1.DataSource = product;
-            dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[dataGridView1.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             
             
