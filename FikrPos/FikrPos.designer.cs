@@ -116,6 +116,20 @@ namespace FikrPos
 				return this.GetTable<Product>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertSaleDetail")]
+		public int InsertSaleDetail([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProductID", DbType="Int")] System.Nullable<int> productID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Qty", DbType="Int")] System.Nullable<int> qty, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tax", DbType="Float")] System.Nullable<double> tax, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Discount", DbType="Float")] System.Nullable<double> discount, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Price", DbType="Float")] System.Nullable<double> price, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SaleID", DbType="Int")] System.Nullable<int> saleID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), productID, qty, tax, discount, price, saleID);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertProduct")]
+		public int InsertProduct([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Code", DbType="VarChar(255)")] string code, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Name", DbType="VarChar(255)")] string name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Price", DbType="Float")] System.Nullable<double> price, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Unit", DbType="VarChar(255)")] string unit, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Discount", DbType="Float")] System.Nullable<double> discount, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Tax", DbType="Float")] System.Nullable<double> tax, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Stock", DbType="Int")] System.Nullable<int> stock, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MinimumStock", DbType="Int")] System.Nullable<int> minimumStock)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), code, name, price, unit, discount, tax, stock, minimumStock);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AppInfo")]

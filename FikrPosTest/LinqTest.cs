@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FikrPos;
 using FikrPos.Models;
+using System.Data.SqlClient;
 
 namespace FikrPosTest
 {
@@ -63,16 +64,51 @@ namespace FikrPosTest
         #endregion
 
         [TestMethod]
-        public void PrepareDataTest()
+        public void TestNormalSale()
         {
-            insertAppUser();
-            appUser = db.AppUsers.Where(u => u.Username == "eko").SingleOrDefault();
-            insertProducts();
-            insertSale();
-            
+            initialData();
+            insertNormalSale();            
         }
 
-        private void insertAppUser()
+        [TestMethod]
+        public void TestNegativeSale()
+        {
+            initialData();
+            insertNegativeSale();
+        }
+
+        private void insertNegativeSale()
+        {
+            try
+            {
+                db.ExecuteCommand("Delete from Sale");
+
+                db.Transaction = db.Connection.BeginTransaction();
+                Sale sale;
+                sale = new Sale();
+                sale.UserId = appUser.ID;
+                sale.Date = new DateTime();
+                db.Sales.InsertOnSubmit(sale);
+                db.SubmitChanges();
+
+                Product p0 = db.Products.Where(p => p.Code == "000").SingleOrDefault();
+                db.InsertSaleDetail(p0.ID, p0.Stock + 2, p0.Tax, p0.Discount, p0.Price, sale.ID);
+                db.SubmitChanges();
+            }
+            catch (SqlException ex)
+            {
+                db.Transaction.Rollback();
+            }
+        }
+
+        private void initialData()
+        {
+            insertAppUsers();
+            appUser = db.AppUsers.Where(u => u.Username == "eko").SingleOrDefault();
+            insertProducts();
+        }
+
+        private void insertAppUsers()
         {
             db.ExecuteCommand("Delete from AppUser");
             appUser = new AppUser();
@@ -88,7 +124,7 @@ namespace FikrPosTest
             db.SubmitChanges();
         }
 
-        private void insertSale()
+        private void insertNormalSale()
         {
             db.ExecuteCommand("Delete from Sale");
 
@@ -96,29 +132,13 @@ namespace FikrPosTest
             sale = new Sale();
             sale.UserId = appUser.ID;
             sale.Date = new DateTime();
-            
-            Product p0 = db.Products.Where(p=>p.Code=="000").SingleOrDefault();
-            Product p1 = db.Products.Where(p => p.Code == "001").SingleOrDefault();
-            Product p2 = db.Products.Where(p => p.Code == "002").SingleOrDefault();
-            
-            SaleDetail saleDetail;
-            saleDetail = new SaleDetail();
-            saleDetail.Product = p0;
-            saleDetail.Qty = 5;
-            sale.SaleDetails.Add(saleDetail);
-
-            saleDetail = new SaleDetail();
-            saleDetail.Product = p1;
-            saleDetail.Qty = 2;
-            sale.SaleDetails.Add(saleDetail);
-
             db.Sales.InsertOnSubmit(sale);
             db.SubmitChanges();
-
             
 
-            
-
+            Product p0 = db.Products.Where(p=>p.Code=="000").SingleOrDefault();
+            db.InsertSaleDetail(p0.ID, 5, p0.Tax, p0.Discount, p0.Price, sale.ID);
+            db.SubmitChanges();
         }
 
         private void insertProducts()
@@ -135,9 +155,9 @@ namespace FikrPosTest
             p.Tax = 0;
             p.Discount = 0;
             p.Unit = "box";
-            db.Products.InsertOnSubmit(p);
+            db.InsertProduct(p.Code, p.Name, p.Price, p.Unit, p.Discount, p.Tax, p.Stock, p.Minimum_Stock);
 
-
+            /*
             p = new Product();
             p.Code = "001";
             p.Name = "Product 001";
@@ -147,7 +167,8 @@ namespace FikrPosTest
             p.Tax = 1;
             p.Discount = 1;
             p.Unit = "pcs";
-            db.Products.InsertOnSubmit(p);
+            db.InsertProduct(p.Code, p.Name, p.Price, p.Unit, p.Discount, p.Tax, p.Stock, p.Minimum_Stock);
+
 
             p = new Product();
             p.Code = "002";
@@ -158,9 +179,9 @@ namespace FikrPosTest
             p.Tax = 2;
             p.Discount = 2;
             p.Unit = "dus";
-            db.Products.InsertOnSubmit(p);
-
-            db.SubmitChanges();
+            db.InsertProduct(p.Code, p.Name, p.Price, p.Unit, p.Discount, p.Tax, p.Stock, p.Minimum_Stock);
+             */
+            db.SubmitChanges();            
         }
     }
 }

@@ -46,7 +46,7 @@
         <elementListCompartment Id="650546b7-52f0-41d2-9eb2-a65213f668f6" absoluteBounds="3.515, 3.46, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.5 : 4.70755126953125); (2.5 : 4.70755126953125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.5 : 4.70755126953125); (2.5 : 4.70755126953125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/FikrPosDataContext/Product/Product_SaleDetail" />
       <nodes>
         <classShapeMoniker Id="3f582766-d5ec-494f-b415-1e7a27b3aeba" />

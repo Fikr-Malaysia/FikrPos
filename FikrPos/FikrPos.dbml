@@ -61,4 +61,24 @@
       <Association Name="Product_SaleDetail" Member="SaleDetails" ThisKey="ID" OtherKey="ProductID" Type="SaleDetail" />
     </Type>
   </Table>
+  <Function Name="dbo.InsertSaleDetail" Method="InsertSaleDetail">
+    <Parameter Name="ProductID" Parameter="productID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Qty" Parameter="qty" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Tax" Parameter="tax" Type="System.Double" DbType="Float" />
+    <Parameter Name="Discount" Parameter="discount" Type="System.Double" DbType="Float" />
+    <Parameter Name="Price" Parameter="price" Type="System.Double" DbType="Float" />
+    <Parameter Name="SaleID" Parameter="saleID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertProduct" Method="InsertProduct">
+    <Parameter Name="Code" Parameter="code" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Price" Parameter="price" Type="System.Double" DbType="Float" />
+    <Parameter Name="Unit" Parameter="unit" Type="System.String" DbType="VarChar(255)" />
+    <Parameter Name="Discount" Parameter="discount" Type="System.Double" DbType="Float" />
+    <Parameter Name="Tax" Parameter="tax" Type="System.Double" DbType="Float" />
+    <Parameter Name="Stock" Parameter="stock" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MinimumStock" Parameter="minimumStock" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>
