@@ -81,20 +81,24 @@ namespace FikrPosTest
         {
             try
             {
-                db.ExecuteCommand("Delete from Sale");
-
                 db.Transaction = db.Connection.BeginTransaction();
+                db.ExecuteCommand("Delete from Sale");
                 Sale sale;
                 sale = new Sale();
                 sale.UserId = appUser.ID;
                 sale.Date = new DateTime();
+                Product p0 = db.Products.Where(p => p.Code == "000").SingleOrDefault();
+
+                SaleDetail sd = new SaleDetail();
+                sd.ProductID = p0.ID;
+                sd.Qty = p0.Stock + 2;
+                sd.Tax = Convert.ToDouble(p0.Tax);
+                sd.Discount= p0.Discount;
+                sd.Price= p0.Price;
+                sale.SaleDetails.Add(sd);
                 db.Sales.InsertOnSubmit(sale);
                 db.SubmitChanges();
-
-                int saleDetailId;
-                Product p0 = db.Products.Where(p => p.Code == "000").SingleOrDefault();
-                db.InsertSaleDetail(saleDetailId, p0.ID, p0.Stock + 2, p0.Tax, p0.Discount, p0.Price, sale.ID);
-                db.SubmitChanges();
+                db.Transaction.Commit();
             }
             catch (SqlException ex)
             {
@@ -127,19 +131,31 @@ namespace FikrPosTest
 
         private void insertNormalSale()
         {
-            db.ExecuteCommand("Delete from Sale");
+            try
+            {
+                db.Transaction = db.Connection.BeginTransaction();
+                db.ExecuteCommand("Delete from Sale");
+                Sale sale;
+                sale = new Sale();
+                sale.UserId = appUser.ID;
+                sale.Date = new DateTime();
+                Product p0 = db.Products.Where(p => p.Code == "000").SingleOrDefault();
 
-            Sale sale;
-            sale = new Sale();
-            sale.UserId = appUser.ID;
-            sale.Date = new DateTime();
-            db.Sales.InsertOnSubmit(sale);
-            db.SubmitChanges();
-            
-
-            Product p0 = db.Products.Where(p=>p.Code=="000").SingleOrDefault();
-            db.InsertSaleDetail(-1, p0.ID, 5, p0.Tax, p0.Discount, p0.Price, sale.ID);
-            db.SubmitChanges();
+                SaleDetail sd = new SaleDetail();
+                sd.ProductID = p0.ID;
+                sd.Qty = p0.Stock - 1;
+                sd.Tax = Convert.ToDouble(p0.Tax);
+                sd.Discount = p0.Discount;
+                sd.Price = p0.Price;
+                sale.SaleDetails.Add(sd);
+                db.Sales.InsertOnSubmit(sale);
+                db.SubmitChanges();
+                db.Transaction.Commit();
+            }
+            catch (SqlException ex)
+            {
+                db.Transaction.Rollback();
+            }
         }
 
         private void insertProducts()

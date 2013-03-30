@@ -104,7 +104,6 @@ namespace FikrPos.Forms.Pos
                     saleDetail.Extended_Price = flatPrice - discount + tax;
                     
                     sale.SaleDetails.Add(saleDetail);
-                    //saleDetails.Add(saleDetail);
                     hashSaleDetail.Add(productCode, saleDetail);
 
                     dataGridView1.Rows.Add(new Object[] { product.Code, product.Name, saleDetail.Qty, saleDetail.Price,saleDetail.Discount,saleDetail.Tax,saleDetail.Extended_Price });
@@ -121,6 +120,7 @@ namespace FikrPos.Forms.Pos
 
         private void calculateFooter()
         {
+            FikrPosDataContext db = Program.getDb();
             //calculate footer
             double footerSubTotal = 0;
             int footerQty = 0;
@@ -152,6 +152,21 @@ namespace FikrPos.Forms.Pos
                     rowDiscount = ((rowQty * rowPrice) * (discount / 100));
                     footerDiscount += rowDiscount;
                 }
+
+                // product ID
+                var product = db.Products.Where(p => p.Code == r.Cells[0].Value.ToString()).SingleOrDefault();
+
+                foreach (SaleDetail sd in sale.SaleDetails)
+                {
+                    if(sd.ProductID==product.ID)
+                    {
+                        sd.Qty = rowQty;
+                        sd.Tax = rowTax;
+                        sd.Discount = rowDiscount;
+                        sd.Extended_Price = (sd.Qty * sd.Price) - rowDiscount + rowTax;
+                    }
+                }
+                
             }
             footerTotal = footerSubTotal + footerTax - footerDiscount; ;
 
@@ -225,7 +240,6 @@ namespace FikrPos.Forms.Pos
                                 MessageBox.Show(ex.Message);                              
                                 db.Transaction.Rollback();
                             }
-                            
                         }
                     }
                     break;
@@ -256,6 +270,11 @@ namespace FikrPos.Forms.Pos
                 txtScanCode_KeyPress(txtScanCode, new KeyPressEventArgs((char)Keys.Return));
                 txtScanCode.Focus();
             }
+        }
+
+        private void txtScanCode_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 
