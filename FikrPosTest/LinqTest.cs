@@ -91,7 +91,7 @@ namespace FikrPosTest
 
                 SaleDetail sd = new SaleDetail();
                 sd.ProductID = p0.ID;
-                sd.Qty = p0.Stock + 2;
+                sd.Qty = 10 + 2;
                 sd.Tax = Convert.ToDouble(p0.Tax);
                 sd.Discount= p0.Discount;
                 sd.Price= p0.Price;
@@ -117,7 +117,7 @@ namespace FikrPosTest
         {
             db.ExecuteCommand("Delete from AppUser");
             appUser = new AppUser();
-            appUser.Username = "eko";
+            appUser.Username = "eko";   
             appUser.Password = Cryptho.Encrypt("muhammad");
             appUser.Role = Roles.Cashier;
             db.AppUsers.InsertOnSubmit(appUser);
@@ -143,7 +143,7 @@ namespace FikrPosTest
 
                 SaleDetail sd = new SaleDetail();
                 sd.ProductID = p0.ID;
-                sd.Qty = p0.Stock - 1;
+                sd.Qty = 1;
                 sd.Tax = Convert.ToDouble(p0.Tax);
                 sd.Discount = p0.Discount;
                 sd.Price = p0.Price;
@@ -167,37 +167,36 @@ namespace FikrPosTest
             p.Code = "000";
             p.Name = "Product 000";
             p.Price = 100;
-            p.Stock = 10;
-            p.Minimum_Stock = 1;
+            int Stock = 10;
+            int Minimum_Stock = 1;
             p.Tax = 0;
             p.Discount = 0;
             p.Unit = "box";
-            db.InsertProduct(p.Code, p.Name, p.Price, p.Unit, p.Discount, p.Tax, p.Stock, p.Minimum_Stock);
+            db.InsertProduct(p.Code, p.Name, p.Price, p.Unit, p.Discount, p.Tax, Stock, Minimum_Stock);
 
-            /*
+            
             p = new Product();
             p.Code = "001";
             p.Name = "Product 001";
             p.Price = 1000;
-            p.Stock = 100;
-            p.Minimum_Stock = 10;
+            Stock = 100;
+            Minimum_Stock = 10;
             p.Tax = 1;
             p.Discount = 1;
             p.Unit = "pcs";
-            db.InsertProduct(p.Code, p.Name, p.Price, p.Unit, p.Discount, p.Tax, p.Stock, p.Minimum_Stock);
-
+            db.InsertProduct(p.Code, p.Name, p.Price, p.Unit, p.Discount, p.Tax, Stock, Minimum_Stock);
+            
 
             p = new Product();
             p.Code = "002";
             p.Name = "Product 002";
             p.Price = 2000;
-            p.Stock = 200;
-            p.Minimum_Stock = 20;
+            Stock = 200;
+            Minimum_Stock = 20;
             p.Tax = 2;
             p.Discount = 2;
             p.Unit = "dus";
-            db.InsertProduct(p.Code, p.Name, p.Price, p.Unit, p.Discount, p.Tax, p.Stock, p.Minimum_Stock);
-             */
+            db.InsertProduct(p.Code, p.Name, p.Price, p.Unit, p.Discount, p.Tax, Stock, Minimum_Stock);
             db.SubmitChanges();            
         }
     }

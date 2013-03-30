@@ -153,6 +153,12 @@
     <Compile Include="Forms\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Stock Control\InventoryControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Stock Control\InventoryControl.Designer.cs">
+      <DependentUpon>InventoryControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="helper\Cryptho.cs" />
     <Compile Include="helper\ModifyRegistry.cs" />
     <Compile Include="Models\Roles.cs" />
@@ -203,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Stock Control\InventoryControl.resx">
+      <DependentUpon>InventoryControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -27,6 +27,8 @@
       <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="[Extended Price]" Member="Extended_Price" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="SaleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="SaleDetail_Inventory" Member="Inventories" ThisKey="ID" OtherKey="SaleDetailID" Type="Inventory" />
+      <Association Name="SaleDetail_InventoryDetail" Member="InventoryDetails" ThisKey="ID" OtherKey="SaleDetailID" Type="InventoryDetail" />
       <Association Name="Sale_SaleDetail" Member="Sale" ThisKey="SaleID" OtherKey="ID" Type="Sale" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Product_SaleDetail" Member="Product" ThisKey="ProductID" OtherKey="ID" Type="Product" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
@@ -65,9 +67,34 @@
       <Column Name="Unit" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Discount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="Tax" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="Stock" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="[Minimum Stock]" Member="Minimum_Stock" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Product_SaleDetail" Member="SaleDetails" ThisKey="ID" OtherKey="ProductID" Type="SaleDetail" />
+      <Association Name="Product_Inventory" Member="Inventories" ThisKey="ID" OtherKey="ProductID" Type="Inventory" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Inventory" Member="Inventories">
+    <Type Name="Inventory">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Current Quantity]" Member="Current_Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="SaleDetailID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Minimum Stock]" Member="Minimum_Stock" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Inventory_InventoryDetail" Member="InventoryDetails" ThisKey="ID" OtherKey="InventoryID" Type="InventoryDetail" />
+      <Association Name="Product_Inventory" Member="Product" ThisKey="ProductID" OtherKey="ID" Type="Product" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="SaleDetail_Inventory" Member="SaleDetail" ThisKey="SaleDetailID" OtherKey="ID" Type="SaleDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InventoryDetail" Member="InventoryDetails">
+    <Type Name="InventoryDetail">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="InventoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="SaleDetailID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Change" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Message" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="[Current Stock]" Member="Current_Stock" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Inventory_InventoryDetail" Member="Inventory" ThisKey="InventoryID" OtherKey="ID" Type="Inventory" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="SaleDetail_InventoryDetail" Member="SaleDetail" ThisKey="SaleDetailID" OtherKey="ID" Type="SaleDetail" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.InsertProduct" Method="InsertProduct">

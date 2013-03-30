@@ -37,9 +37,9 @@ namespace FikrPos.Forms.Data.ProductFolder
                 product.Unit = cboUnit.Text;
                 product.Discount = Convert.ToDouble(txtDiscount.Text);
                 product.Tax = Convert.ToDouble(txtTax.Text);
-                product.Stock = Convert.ToInt32(txtStock.Text);
-                product.Minimum_Stock = Convert.ToInt32(txtMinimumStock.Text);
-                db.Products.InsertOnSubmit(product);
+                int Stock = 0;
+                int Minimum_Stock = 0;
+                db.InsertProduct(product.Code, product.Name, product.Price, product.Unit, product.Discount, product.Tax, Stock, Minimum_Stock);
                 db.SubmitChanges();
             }
             else if (FormMode == FormModeEnum.Update)
@@ -53,8 +53,6 @@ namespace FikrPos.Forms.Data.ProductFolder
                 product.Unit = cboUnit.Text;
                 product.Discount = Convert.ToDouble(txtDiscount.Text);
                 product.Tax = Convert.ToDouble(txtTax.Text);
-                product.Stock = Convert.ToInt32(txtStock.Text);
-                product.Minimum_Stock = Convert.ToInt32(txtMinimumStock.Text);
                 db.SubmitChanges();
             }
         }
@@ -73,9 +71,7 @@ namespace FikrPos.Forms.Data.ProductFolder
                 txtPrice.Text = product.Price.ToString();
                 cboUnit.Text = product.Unit;
                 txtDiscount.Text = product.Discount.ToString();
-                txtTax.Text = product.Tax.ToString();
-                txtStock.Text = product.Stock.ToString();
-                txtMinimumStock.Text = product.Minimum_Stock.ToString();
+                txtTax.Text = product.Tax.ToString();                
             }
         }
 
@@ -83,8 +79,6 @@ namespace FikrPos.Forms.Data.ProductFolder
         {
             txtDiscount.Text = "0";
             txtTax.Text = "0";
-            txtStock.Text = "0";
-            txtMinimumStock.Text = "0";
         }
 
         public FormModeEnum FormMode

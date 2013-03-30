@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using FikrPos.Forms.Data;
 using FikrPos.Forms.Data.ProductFolder;
+using FikrPos.Forms.Stock_Control;
 
 namespace FikrPos.Forms
 {
@@ -195,6 +196,14 @@ namespace FikrPos.Forms
         {
             AutoupdateEngine.automaticUpdate = false;
             checkLatestSoftwareUpdate();
+        }
+
+        private void inventoryListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InventoryControl form = new InventoryControl();
+            form.WindowState = FormWindowState.Maximized;
+            form.MdiParent = this;
+            form.Show();
         }
     }
 }

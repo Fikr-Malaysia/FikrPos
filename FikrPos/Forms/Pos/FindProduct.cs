@@ -22,9 +22,10 @@ namespace FikrPos.Forms.Pos
         {
             FikrPosDataContext db = Program.getDb();
 
-            var product = from p in db.Products
+            var product = db.Products.Join(db.Inventories, p => p.ID, i=>i.ProductID, (p, i) => new {p.Code, p.Name, p.Price, p.Discount, p.Tax, i.Current_Quantity});
+            /*var product = from p in db.Products
                           where p.Name.Contains(txtName.Text)
-                          select new { p.Code, p.Name, p.Price, p.Discount, p.Tax, p.Stock };
+                          select new { p.Code, p.Name, p.Price, p.Discount, p.Tax, p.Stock };*/
 
 
             dataGridView1.DataSource = product;

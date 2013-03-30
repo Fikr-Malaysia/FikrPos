@@ -229,21 +229,18 @@ namespace FikrPos.Forms.Pos
                             //insert sale detail using SP
                             try
                             {
-                                db.Transaction = db.Connection.BeginTransaction();
                                 db.Sales.InsertOnSubmit(sale);
                                 db.SubmitChanges();
-                                db.Transaction.Commit();
                                 prepareNewPosTransaction();
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.Message);                              
-                                db.Transaction.Rollback();
+                                string[] messages = ex.Message.Split('\r');
+                                MessageBox.Show(messages[0]);                              
                             }
                         }
                     }
                     break;
-                
             }
         }
 
