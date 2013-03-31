@@ -7,6 +7,7 @@ using FikrPos.Forms.Pos;
 using FikrPos.Models;
 using System.Data;
 using System.Diagnostics;
+using System.Data.SqlClient;
 
 namespace FikrPos
 {
@@ -48,7 +49,11 @@ namespace FikrPos
                         break;
                 }
             }
-            
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+
             if(username!=null && password!=null)
                 Program.userLogin = Program.Login(username, password);
 
@@ -62,8 +67,7 @@ namespace FikrPos
                 db.SubmitChanges();
             }
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            
             startupForm = new StartupForm();
             startupForm.Visible = false;
             Application.Run(startupForm);
@@ -118,7 +122,8 @@ namespace FikrPos
 
         internal static AppUser Login(string username, string password)
         {
-            FikrPosDataContext db = Program.getDb();
+            FikrPosDataContext db = Program.getDb(true);
+           
             return (from u in db.AppUsers
                             where u.Username == username
                             && u.Password == Cryptho.Encrypt(password)
@@ -150,7 +155,7 @@ namespace FikrPos
             }
         }
 
-        public static FikrPosDataContext getDb()
+        public static FikrPosDataContext getDb(bool openSettingPage=false)
         {
             if (db == null)
             {
@@ -167,9 +172,28 @@ namespace FikrPos
                 db = new FikrPosDataContext(connectionString);
             }
 
-            if (db.Connection.State == ConnectionState.Closed)
+            try
             {
-                db.Connection.Open();
+
+                if (db.Connection.State == ConnectionState.Closed)
+                {
+                    db.Connection.Open();
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Database not functional. Please correct it first");
+                if (openSettingPage)
+                {
+                    Settings settings = new Settings();
+                    DialogResult dr = settings.ShowDialog();
+                    if (!settings.connectionSucces && dr == DialogResult.Cancel)
+                    {
+                        MessageBox.Show("Application must use a valid database. Application will now exit");
+                        Environment.Exit(-1);
+                    }
+                }
+                
             }
             return db;
         }

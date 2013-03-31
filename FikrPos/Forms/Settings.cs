@@ -12,7 +12,7 @@ namespace FikrPos.Forms
 {
     public partial class Settings : Form
     {
-        bool connectionSucces = false;
+        public bool connectionSucces = false;
         public Settings()
         {
             InitializeComponent();
@@ -67,7 +67,9 @@ namespace FikrPos.Forms
             SaveValues();
             RegistrySettings.getInstance().writeValues();
             Program.closeConnection();
+            
             FikrPosDataContext db = Program.getDb();
+            db.Connection.Close();
             if (db.Connection.State == ConnectionState.Closed)
             {
                 try
@@ -92,7 +94,18 @@ namespace FikrPos.Forms
 
         private void Settings_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = !connectionSucces;
+            if (!forceClose)
+            {
+
+                e.Cancel = !connectionSucces;
+            }
+        }
+
+        bool forceClose = false;
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            forceClose = true;
+            Close();
         }
     }
 }
