@@ -188,7 +188,7 @@ namespace FikrPos.Forms
 
         private void checkLatestSoftwareUpdate()
         {
-            AutoupdateEngine.CheckForUpdates(new NAppUpdate.Framework.Sources.SimpleWebSource("http://fikrpos.swdevbali.com/fikrpos.xml"));
+            AutoupdateEngine.getInstance().CheckForUpdates(new NAppUpdate.Framework.Sources.SimpleWebSource("http://fikrpos.swdevbali.com/fikrpos.xml"));
             //AutoupdateEngine.CheckForUpdates(new NAppUpdate.Framework.Sources.SimpleWebSource("http://localhost/fikrpos/fikrpos.xml"));
         }
 
