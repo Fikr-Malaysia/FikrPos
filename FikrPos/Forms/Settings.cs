@@ -47,9 +47,10 @@ namespace FikrPos.Forms
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (!connectionSucces)
+            btnTestDatabaseConnection_Click(sender, e);
+            if (!connectionSucces && MessageBox.Show("Your connection is not verified yet. If you cancel, application will exit. Are you sure?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                MessageBox.Show("Please test your database connection first");
+                Environment.Exit(-1);
                 return;
             }
 
@@ -68,7 +69,7 @@ namespace FikrPos.Forms
             RegistrySettings.getInstance().writeValues();
             Program.closeConnection();
             
-            FikrPosDataContext db = Program.getDb();
+            FikrPosDataContext db = Program.getDb(false);
             db.Connection.Close();
             if (db.Connection.State == ConnectionState.Closed)
             {
@@ -104,6 +105,7 @@ namespace FikrPos.Forms
         bool forceClose = false;
         private void btnCancel_Click(object sender, EventArgs e)
         {
+           
             forceClose = true;
             Close();
         }

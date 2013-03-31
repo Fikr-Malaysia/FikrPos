@@ -122,7 +122,7 @@ namespace FikrPos
 
         internal static AppUser Login(string username, string password)
         {
-            FikrPosDataContext db = Program.getDb(true);
+            FikrPosDataContext db = Program.getDb();
            
             return (from u in db.AppUsers
                             where u.Username == username
@@ -155,7 +155,7 @@ namespace FikrPos
             }
         }
 
-        public static FikrPosDataContext getDb(bool openSettingPage=false)
+        public static FikrPosDataContext getDb(bool openSettingPage=true)
         {
             if (db == null)
             {
