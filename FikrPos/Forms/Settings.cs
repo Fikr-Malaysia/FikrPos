@@ -51,7 +51,6 @@ namespace FikrPos.Forms
             if (!connectionSucces && MessageBox.Show("Your connection is not verified yet. If you cancel, application will exit. Are you sure?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Environment.Exit(-1);
-                return;
             }
 
             //Mark that it's success 
@@ -67,23 +66,20 @@ namespace FikrPos.Forms
             connectionSucces = false;
             SaveValues();
             RegistrySettings.getInstance().writeValues();
-            Program.closeConnection();
-            
             FikrPosDataContext db = Program.getDb(false);
             db.Connection.Close();
-            if (db.Connection.State == ConnectionState.Closed)
+            
+            try
             {
-                try
-                {
 
-                    db.Connection.Open();
-                    connectionSucces = true;
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show(ex.Message, "Database Connection");
-                }
+                db.Connection.Open();
+                connectionSucces = true;
             }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Database Connection");
+            }
+            
 
             if (connectionSucces)
             {

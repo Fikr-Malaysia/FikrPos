@@ -6,12 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.Linq;
 
 namespace FikrPos.Forms.Stock_Control
 {
     public partial class StockAdjustment : Form
     {
-        FikrPosDataContext db;
+        
         public Inventory inventory = null;
         public Product product { get; set; }
         bool fromStockChange = false;
@@ -29,7 +30,7 @@ namespace FikrPos.Forms.Stock_Control
         
         internal void prepareForm(Product product)
         {
-            db = Program.getDb();            
+            FikrPosDataContext db = Program.getDb();            
             txtMessage.Text = "Manual stock adjustment";
             this.product = product;            
             inventory = db.Inventories.Where(i => i.ProductID == product.ID).Single();
@@ -60,6 +61,9 @@ namespace FikrPos.Forms.Stock_Control
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            numStockChange_ValueChanged(sender, e);
+            numCurrentStock_ValueChanged(sender, e);
+
             this.stockChange = Convert.ToInt32(numStockChange.Value);
             this.currentStock = Convert.ToInt32(numCurrentStock.Value);
             this.Date = dateTimePicker1.Value;

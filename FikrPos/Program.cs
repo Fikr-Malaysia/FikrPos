@@ -8,6 +8,7 @@ using FikrPos.Models;
 using System.Data;
 using System.Diagnostics;
 using System.Data.SqlClient;
+using System.Data.Linq;
 
 namespace FikrPos
 {
@@ -17,8 +18,7 @@ namespace FikrPos
         public static StartupForm startupForm;
         public static MainWindow mainWindow;
         public static PosGui posGui;
-        public static bool graceClose = false;
-        public static FikrPosDataContext db = null;
+        public static bool graceClose = false;        
         public static bool ForceClose = false;
         public static string StartupPath;
         public static AppUser userLogin;
@@ -157,20 +157,18 @@ namespace FikrPos
 
         public static FikrPosDataContext getDb(bool openSettingPage=true)
         {
-            if (db == null)
+            
+            string connectionString = null;
+            //RegistrySettings.getInstance().loadValues();
+            if (RegistrySettings.getInstance().serverLogin)
             {
-                string connectionString = null;
-
-                if (RegistrySettings.getInstance().serverLogin)
-                {
-                    connectionString = "Server=" + RegistrySettings.getInstance().SqlHost + ";Database=" + RegistrySettings.getInstance().SqlDatabase + ";Uid=" + RegistrySettings.getInstance().SqlUsername + ";Pwd=" + RegistrySettings.getInstance().SqlPassword;
-                }
-                else
-                {
-                    connectionString = "Server=" + RegistrySettings.getInstance().SqlHost + ";Database=" + RegistrySettings.getInstance().SqlDatabase + ";Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
-                }
-                db = new FikrPosDataContext(connectionString);
+                connectionString = "Server=" + RegistrySettings.getInstance().SqlHost + ";Database=" + RegistrySettings.getInstance().SqlDatabase + ";Uid=" + RegistrySettings.getInstance().SqlUsername + ";Pwd=" + RegistrySettings.getInstance().SqlPassword;
             }
+            else
+            {
+                connectionString = "Server=" + RegistrySettings.getInstance().SqlHost + ";Database=" + RegistrySettings.getInstance().SqlDatabase + ";Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+            }
+            FikrPosDataContext db = new FikrPosDataContext(connectionString);            
 
             try
             {
@@ -182,7 +180,7 @@ namespace FikrPos
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Database not functional. Please correct it first");
+                //MessageBox.Show("Database not functional. Please correct it first");
                 if (openSettingPage)
                 {
                     Settings settings = new Settings();
@@ -192,14 +190,20 @@ namespace FikrPos
                         MessageBox.Show("Application must use a valid database. Application will now exit");
                         Environment.Exit(-1);
                     }
+                    else
+                    {
+                        db = getDb();
+                    }
                 }
                 
             }
+            db.Refresh(RefreshMode.OverwriteCurrentValues);
             return db;
         }
 
         public static void closeConnection()
         {
+            FikrPosDataContext db = getDb();
             if (db != null)
             {
                 if (db.Connection.State == ConnectionState.Open) db.Connection.Close();
