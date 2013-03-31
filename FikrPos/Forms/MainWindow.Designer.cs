@@ -38,6 +38,7 @@
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.companyProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inventoryListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,14 +57,11 @@
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolInventory = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.timerAutoUpdate = new System.Windows.Forms.Timer(this.components);
-            this.inventoryControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.inventoryListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -77,8 +75,7 @@
             this.viewMenu,
             this.toolsMenu,
             this.windowsMenu,
-            this.helpMenu,
-            this.inventoryControlToolStripMenuItem});
+            this.helpMenu});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
@@ -115,7 +112,8 @@
             this.dataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userToolStripMenuItem,
             this.productToolStripMenuItem,
-            this.companyProfileToolStripMenuItem});
+            this.companyProfileToolStripMenuItem,
+            this.inventoryListToolStripMenuItem});
             this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
             this.dataToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.dataToolStripMenuItem.Text = "&Data";
@@ -140,6 +138,13 @@
             this.companyProfileToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.companyProfileToolStripMenuItem.Text = "&Company profile";
             this.companyProfileToolStripMenuItem.Click += new System.EventHandler(this.companyProfileToolStripMenuItem_Click);
+            // 
+            // inventoryListToolStripMenuItem
+            // 
+            this.inventoryListToolStripMenuItem.Name = "inventoryListToolStripMenuItem";
+            this.inventoryListToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.inventoryListToolStripMenuItem.Text = "&Inventory List";
+            this.inventoryListToolStripMenuItem.Click += new System.EventHandler(this.inventoryListToolStripMenuItem_Click);
             // 
             // viewMenu
             // 
@@ -280,31 +285,22 @@
             // 
             this.toolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2});
+            this.toolInventory});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(632, 39);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
-            // toolStripButton1
+            // toolInventory
             // 
-            this.toolStripButton1.Image = global::FikrPos.Properties.Resources._32x32;
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(97, 36);
-            this.toolStripButton1.Text = "Shortcut 1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Image = global::FikrPos.Properties.Resources._32x32;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(97, 36);
-            this.toolStripButton2.Text = "Shortcut 2";
+            this.toolInventory.Image = global::FikrPos.Properties.Resources.Custom_Icon_Design_Pretty_Office_3_Inventory_maintenance;
+            this.toolInventory.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolInventory.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolInventory.Name = "toolInventory";
+            this.toolInventory.Size = new System.Drawing.Size(93, 36);
+            this.toolInventory.Text = "Inventory";
+            this.toolInventory.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // statusStrip
             // 
@@ -327,26 +323,10 @@
             this.timerAutoUpdate.Interval = 1000;
             this.timerAutoUpdate.Tick += new System.EventHandler(this.timerAutoUpdate_Tick);
             // 
-            // inventoryControlToolStripMenuItem
-            // 
-            this.inventoryControlToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.inventoryListToolStripMenuItem});
-            this.inventoryControlToolStripMenuItem.Name = "inventoryControlToolStripMenuItem";
-            this.inventoryControlToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
-            this.inventoryControlToolStripMenuItem.Text = "&Inventory Control";
-            // 
-            // inventoryListToolStripMenuItem
-            // 
-            this.inventoryListToolStripMenuItem.Name = "inventoryListToolStripMenuItem";
-            this.inventoryListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.inventoryListToolStripMenuItem.Text = "&Inventory List";
-            this.inventoryListToolStripMenuItem.Click += new System.EventHandler(this.inventoryListToolStripMenuItem_Click);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::FikrPos.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(632, 453);
             this.Controls.Add(this.statusStrip);
@@ -403,11 +383,9 @@
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem companyProfileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolInventory;
         private System.Windows.Forms.Timer timerAutoUpdate;
         private System.Windows.Forms.ToolStripMenuItem checkLatestUpdateToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem inventoryControlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inventoryListToolStripMenuItem;
     }
 }

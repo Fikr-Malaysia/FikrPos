@@ -76,9 +76,10 @@
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="[Current Quantity]" Member="Current_Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="SaleDetailID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="[Minimum Stock]" Member="Minimum_Stock" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Message" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Association Name="Inventory_InventoryDetail" Member="InventoryDetails" ThisKey="ID" OtherKey="InventoryID" Type="InventoryDetail" />
       <Association Name="Product_Inventory" Member="Product" ThisKey="ProductID" OtherKey="ID" Type="Product" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="SaleDetail_Inventory" Member="SaleDetail" ThisKey="SaleDetailID" OtherKey="ID" Type="SaleDetail" IsForeignKey="true" />
@@ -88,7 +89,7 @@
     <Type Name="InventoryDetail">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="InventoryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="SaleDetailID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Change" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Message" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
@@ -116,6 +117,15 @@
     <Parameter Name="Discount" Parameter="discount" Type="System.Double" DbType="Float" />
     <Parameter Name="Price" Parameter="price" Type="System.Double" DbType="Float" />
     <Parameter Name="SaleID" Parameter="saleID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.InsertInventoryChange" Method="InsertInventoryChange">
+    <Parameter Name="InventoryID" Parameter="inventoryID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ProductID" Parameter="productID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Change" Parameter="change" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CurrentQuantity" Parameter="currentQuantity" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Date" Parameter="date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Message" Parameter="message" Type="System.String" DbType="VarChar(255)" />
     <Return Type="System.Int32" />
   </Function>
 </Database>

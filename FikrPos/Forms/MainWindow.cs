@@ -168,7 +168,7 @@ namespace FikrPos.Forms
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("test");
+            inventoryListToolStripMenuItem_Click(sender, e);
         }
 
         internal void startAutoupdateTimer()
@@ -205,5 +205,7 @@ namespace FikrPos.Forms
             form.MdiParent = this;
             form.Show();
         }
+
+    
     }
 }

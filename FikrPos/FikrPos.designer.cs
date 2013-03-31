@@ -159,6 +159,13 @@ namespace FikrPos
 			saleDetailID = ((System.Nullable<int>)(result.GetParameterValue(0)));
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertInventoryChange")]
+		public int InsertInventoryChange([global::System.Data.Linq.Mapping.ParameterAttribute(Name="InventoryID", DbType="Int")] System.Nullable<int> inventoryID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProductID", DbType="Int")] System.Nullable<int> productID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Change", DbType="Int")] System.Nullable<int> change, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CurrentQuantity", DbType="Int")] System.Nullable<int> currentQuantity, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Date", DbType="DateTime")] System.Nullable<System.DateTime> date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Message", DbType="VarChar(255)")] string message)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), inventoryID, productID, change, currentQuantity, date, message);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AppInfo")]
@@ -1452,6 +1459,8 @@ namespace FikrPos
 		
 		private System.Nullable<int> _Minimum_Stock;
 		
+		private string _Message;
+		
 		private EntitySet<InventoryDetail> _InventoryDetails;
 		
 		private EntityRef<Product> _Product;
@@ -1474,6 +1483,8 @@ namespace FikrPos
     partial void OnSaleDetailIDChanged();
     partial void OnMinimum_StockChanging(System.Nullable<int> value);
     partial void OnMinimum_StockChanged();
+    partial void OnMessageChanging(string value);
+    partial void OnMessageChanged();
     #endregion
 		
 		public Inventory()
@@ -1548,7 +1559,7 @@ namespace FikrPos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="Date NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime NOT NULL")]
 		public System.DateTime Date
 		{
 			get
@@ -1608,6 +1619,26 @@ namespace FikrPos
 					this._Minimum_Stock = value;
 					this.SendPropertyChanged("Minimum_Stock");
 					this.OnMinimum_StockChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="VarChar(255)")]
+		public string Message
+		{
+			get
+			{
+				return this._Message;
+			}
+			set
+			{
+				if ((this._Message != value))
+				{
+					this.OnMessageChanging(value);
+					this.SendPropertyChanging();
+					this._Message = value;
+					this.SendPropertyChanged("Message");
+					this.OnMessageChanged();
 				}
 			}
 		}
@@ -1821,7 +1852,7 @@ namespace FikrPos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="Date NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime NOT NULL")]
 		public System.DateTime Date
 		{
 			get
