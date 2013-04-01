@@ -215,22 +215,8 @@ namespace FikrPos
 
         public static void LogActivity(LogLevel logLevel, string message, EventLogEntryType eventLogEntryType)
         {
-            if(!EventLog.SourceExists(AppStates.EventLogName))
-            {
-                EventLog.CreateEventSource(AppStates.EventLogName,AppStates.EventLogName);
-            }
-            if (RegistrySettings.getInstance().loggingLevel.Equals("None")) return;
-            if ((logLevel == LogLevel.Debug || logLevel == LogLevel.Normal) && RegistrySettings.getInstance().loggingLevel.Equals("Debug"))
-            {
-                EventLog.WriteEntry(AppStates.EventLogName, message, eventLogEntryType);
-            }
-            else if (logLevel == LogLevel.Normal && RegistrySettings.getInstance().loggingLevel.Equals("Normal"))
-            {
-                EventLog.WriteEntry(AppStates.EventLogName, message, eventLogEntryType);
-            }
-        }
-
-        
+            //TODO : if I need it
+        }        
     }
 }
 

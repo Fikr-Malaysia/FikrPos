@@ -15,10 +15,8 @@
 // Modified from : http://www.codeproject.com/Articles/3389/Read-write-and-delete-from-registry-with-C
 
 using System;
-// it's required for reading/writing into the registry:
 using Microsoft.Win32;
-using System.Diagnostics;     
-// and for the MessageBox function:
+using System.Diagnostics;
 
 namespace FikrPos
 {
@@ -260,7 +258,7 @@ namespace FikrPos
 		private void ShowErrorMessage(Exception e, string Title)
 		{
 			if (showError == true)
-                EventLog.WriteEntry(AppStates.EventLogName, "[RegistrySettings] " + e.Message, EventLogEntryType.FailureAudit, 1);
+                Program.LogActivity(LogLevel.Normal,"[RegistrySettings] " + e.Message, EventLogEntryType.FailureAudit);
             
 		}
 	}
