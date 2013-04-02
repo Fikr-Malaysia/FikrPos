@@ -52,6 +52,9 @@
   <PropertyGroup>
     <ApplicationIcon>cash.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>FikrPos.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="NAppUpdate.Framework">
       <HintPath>..\References\NAppUpdate.Framework.dll</HintPath>
@@ -60,6 +63,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -81,94 +85,102 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FikrPos.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AdministratorPassword.cs">
+    <Compile Include="Modules\AdministratorPassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AdministratorPassword.Designer.cs">
+    <Compile Include="Modules\AdministratorPassword.Designer.cs">
       <DependentUpon>AdministratorPassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MainWindow.cs">
+    <Compile Include="Modules\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MainWindow.Designer.cs">
+    <Compile Include="Modules\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\CompanyProfile.cs">
+    <Compile Include="Modules\CompanyProfile.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CompanyProfile.Designer.cs">
+    <Compile Include="Modules\CompanyProfile.Designer.cs">
       <DependentUpon>CompanyProfile.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Data\ProductFolder\DataProduct.cs">
+    <Compile Include="Modules\Data\ProductFolder\DataProduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Data\ProductFolder\DataProduct.Designer.cs">
+    <Compile Include="Modules\Data\ProductFolder\DataProduct.Designer.cs">
       <DependentUpon>DataProduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Data\ProductFolder\InputProduct.cs">
+    <Compile Include="Modules\Data\ProductFolder\InputProduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Data\ProductFolder\InputProduct.Designer.cs">
+    <Compile Include="Modules\Data\ProductFolder\InputProduct.Designer.cs">
       <DependentUpon>InputProduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Data\UserFolder\DataUser.cs">
+    <Compile Include="Modules\Data\UserFolder\DataUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Data\UserFolder\DataUser.Designer.cs">
+    <Compile Include="Modules\Data\UserFolder\DataUser.Designer.cs">
       <DependentUpon>DataUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Data\UserFolder\InputUser.cs">
+    <Compile Include="Modules\Data\UserFolder\InputUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Data\UserFolder\InputUser.Designer.cs">
+    <Compile Include="Modules\Data\UserFolder\InputUser.Designer.cs">
       <DependentUpon>InputUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Login.cs">
+    <Compile Include="Modules\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Login.Designer.cs">
+    <Compile Include="Modules\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Pos\FindProduct.cs">
+    <Compile Include="Modules\Pos\FindProduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Pos\FindProduct.Designer.cs">
+    <Compile Include="Modules\Pos\FindProduct.Designer.cs">
       <DependentUpon>FindProduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Pos\PosGui.cs">
+    <Compile Include="Modules\Pos\PosGui.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Pos\PosGui.Designer.cs">
+    <Compile Include="Modules\Pos\PosGui.Designer.cs">
       <DependentUpon>PosGui.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Pos\ReceivePayment.cs">
+    <Compile Include="Modules\Pos\ReceivePayment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Pos\ReceivePayment.Designer.cs">
+    <Compile Include="Modules\Pos\ReceivePayment.Designer.cs">
       <DependentUpon>ReceivePayment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings.cs">
+    <Compile Include="Modules\Printing\RawPrinterHelper.cs" />
+    <Compile Include="Modules\Printing\ReceiptPrinting.cs" />
+    <Compile Include="Modules\Printing\TestPrinter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Settings.Designer.cs">
+    <Compile Include="Modules\Printing\TestPrinter.Designer.cs">
+      <DependentUpon>TestPrinter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Stock Control\InventoryControl.cs">
+    <Compile Include="Modules\Stock Control\InventoryControl.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Stock Control\InventoryControl.Designer.cs">
+    <Compile Include="Modules\Stock Control\InventoryControl.Designer.cs">
       <DependentUpon>InventoryControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Stock Control\OpenStock.cs">
+    <Compile Include="Modules\Stock Control\OpenStock.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Stock Control\OpenStock.Designer.cs">
+    <Compile Include="Modules\Stock Control\OpenStock.Designer.cs">
       <DependentUpon>OpenStock.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Stock Control\StockAdjustment.cs">
+    <Compile Include="Modules\Stock Control\StockAdjustment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Stock Control\StockAdjustment.Designer.cs">
+    <Compile Include="Modules\Stock Control\StockAdjustment.Designer.cs">
       <DependentUpon>StockAdjustment.cs</DependentUpon>
     </Compile>
     <Compile Include="helper\Cryptho.cs" />
@@ -186,49 +198,52 @@
     <None Include="FikrPos.dbml.layout">
       <DependentUpon>FikrPos.dbml</DependentUpon>
     </None>
-    <EmbeddedResource Include="Forms\AdministratorPassword.resx">
+    <EmbeddedResource Include="Modules\AdministratorPassword.resx">
       <DependentUpon>AdministratorPassword.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainWindow.resx">
+    <EmbeddedResource Include="Modules\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\CompanyProfile.resx">
+    <EmbeddedResource Include="Modules\CompanyProfile.resx">
       <DependentUpon>CompanyProfile.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Data\ProductFolder\DataProduct.resx">
+    <EmbeddedResource Include="Modules\Data\ProductFolder\DataProduct.resx">
       <DependentUpon>DataProduct.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Data\ProductFolder\InputProduct.resx">
+    <EmbeddedResource Include="Modules\Data\ProductFolder\InputProduct.resx">
       <DependentUpon>InputProduct.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Data\UserFolder\DataUser.resx">
+    <EmbeddedResource Include="Modules\Data\UserFolder\DataUser.resx">
       <DependentUpon>DataUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Data\UserFolder\InputUser.resx">
+    <EmbeddedResource Include="Modules\Data\UserFolder\InputUser.resx">
       <DependentUpon>InputUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Login.resx">
+    <EmbeddedResource Include="Modules\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Pos\FindProduct.resx">
+    <EmbeddedResource Include="Modules\Pos\FindProduct.resx">
       <DependentUpon>FindProduct.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Pos\PosGui.resx">
+    <EmbeddedResource Include="Modules\Pos\PosGui.resx">
       <DependentUpon>PosGui.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Pos\ReceivePayment.resx">
+    <EmbeddedResource Include="Modules\Pos\ReceivePayment.resx">
       <DependentUpon>ReceivePayment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings.resx">
+    <EmbeddedResource Include="Modules\Printing\TestPrinter.resx">
+      <DependentUpon>TestPrinter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Stock Control\InventoryControl.resx">
+    <EmbeddedResource Include="Modules\Stock Control\InventoryControl.resx">
       <DependentUpon>InventoryControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Stock Control\OpenStock.resx">
+    <EmbeddedResource Include="Modules\Stock Control\OpenStock.resx">
       <DependentUpon>OpenStock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Stock Control\StockAdjustment.resx">
+    <EmbeddedResource Include="Modules\Stock Control\StockAdjustment.resx">
       <DependentUpon>StockAdjustment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -9,6 +9,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Data.SqlClient;
 using System.Data.Linq;
+using FikrPos.Forms.Printing;
 
 namespace FikrPos
 {
@@ -29,8 +30,9 @@ namespace FikrPos
             string username = null;
             string password = null;
             bool forceInit = false;
+            bool testPrinter = false;
 
-            //example argument : admin admin noForceInit forceClose
+            //example argument : admin admin noForceInit forceClose testPrinter
             for (int i = 0; i < args.Length; i++)
             {
                 switch (i)
@@ -46,6 +48,9 @@ namespace FikrPos
                         break;
                     case 3:
                         ForceClose = args[i].Equals("forceClose");
+                        break;
+                    case 4:
+                        testPrinter = args[i].Equals("testPrinter");
                         break;
                 }
             }
@@ -67,10 +72,17 @@ namespace FikrPos
                 db.SubmitChanges();
             }
 
+            if (testPrinter)
+            {
+                Application.Run(new TestPrinter());
+            }
+            else
+            {
+                startupForm = new StartupForm();
+                startupForm.Visible = false;
+                Application.Run(startupForm);
+            }
             
-            startupForm = new StartupForm();
-            startupForm.Visible = false;
-            Application.Run(startupForm);
         }
 
         public static void BeginDataInitializationProcess()
