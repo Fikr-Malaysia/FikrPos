@@ -24,7 +24,6 @@ namespace FikrPos.Modules.Printing
             {                    
                 p.Print();
                 cutPaper();
-                    
             }
             catch (Exception ex)
             {
@@ -42,6 +41,40 @@ namespace FikrPos.Modules.Printing
             COMMAND += GS + "V" + (char)1;
             // must test if its work in print cutting 
             RawPrinterHelper.SendStringToPrinter("Bullzip PDF Printer", COMMAND);
+        }
+
+        internal void printPosSale(Sale sale)
+        {
+            PrintDocument p = new PrintDocument();
+            p.DocumentName = "POS";
+            p.PrintPage += delegate(object sender, PrintPageEventArgs e)
+            {   
+                printRow(e, 0, AppStates.appInfo.Company_Name);
+                printRow(e, 1, AppStates.appInfo.Company_Address);
+
+                int i = 2;
+                foreach (SaleDetail sd in sale.SaleDetails)
+                {
+                    ++i;
+                    printRow(e, i, sd.Product.Code + " " + sd.Product.Name + " " + sd.Qty + " " + sd.Price);
+                }
+
+                printRow(e, ++i, sale.Total_Price + "");
+            };
+            try
+            {
+                p.Print();
+                //cutPaper();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception Occured While Printing", ex);
+            }
+        }
+
+        private static void printRow(PrintPageEventArgs e, int row, string s, int width = 500, int yspace=30)
+        {
+            e.Graphics.DrawString(s, new Font("Times New Roman", 12), new SolidBrush(Color.Black), new RectangleF(0, row * yspace, width, 20));
         }
     }
 }

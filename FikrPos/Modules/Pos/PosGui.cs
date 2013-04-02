@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Collections;
 using System.Data.SqlClient;
+using FikrPos.Modules.Printing;
 
 namespace FikrPos.Forms.Pos
 {
@@ -53,7 +54,13 @@ namespace FikrPos.Forms.Pos
             {
                 case (char)Keys.Return:
                     string productCode = txtScanCode.Text;
-                    enterSaleDetail(productCode);
+                    if (productCode == "" && sale.SaleDetails.Count >= 1)
+                    {
+                        receivePayment();
+                    }else
+                    {
+                        enterSaleDetail(productCode);
+                    }
                     break;
                 case (char) Keys.Escape:
                     txtScanCode.Text = "";
@@ -114,7 +121,8 @@ namespace FikrPos.Forms.Pos
             }
             else
             {
-                MessageBox.Show("Product unknown");
+                if(productCode!="")
+                    MessageBox.Show("Product unknown");
             }
         }
 
@@ -209,39 +217,56 @@ namespace FikrPos.Forms.Pos
                     }
                     break;
                 case Keys.F12:
-                    if (posState == PosStateEnum.EnteringTransaction)
-                    {
-                        //posState = PosStateEnum.ReceivingPayment;
-                        if (sale.SaleDetails.Count == 0)
-                        {
-                            MessageBox.Show("Please enter transaction first");
-                            return;
-                        }
-                        ReceivePayment receivePayment = new ReceivePayment();
-                        receivePayment.prepareForm(Convert.ToDouble(txtTotal.Text));
-                        DialogResult dr = receivePayment.ShowDialog();
-                        if (dr == DialogResult.OK)
-                        {
-                            FikrPosDataContext db = Program.getDb();
-                            sale.Payment = receivePayment.payment;
-                            sale.Change = receivePayment.change;
-
-                            //insert sale detail using SP
-                            try
-                            {
-                                db.Sales.InsertOnSubmit(sale);
-                                db.SubmitChanges();
-                                prepareNewPosTransaction();
-                            }
-                            catch (Exception ex)
-                            {
-                                string[] messages = ex.Message.Split('\r');
-                                MessageBox.Show(messages[0]);                              
-                            }
-                        }
-                    }
+                    receivePayment();
                     break;
             }
+        }
+
+        private void receivePayment()
+        {
+            if (posState == PosStateEnum.EnteringTransaction)
+            {
+                //posState = PosStateEnum.ReceivingPayment;
+                if (sale.SaleDetails.Count == 0)
+                {
+                    MessageBox.Show("Please enter transaction first");
+                    return;
+                }
+                ReceivePayment receivePayment = new ReceivePayment();
+                if (Program.isExactPayment)
+                {
+                    receivePayment.payment = Convert.ToDouble(sale.Total_Extended_Price);
+                }
+                receivePayment.prepareForm(Convert.ToDouble(txtTotal.Text));
+                DialogResult dr = receivePayment.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    FikrPosDataContext db = Program.getDb();
+                    sale.Payment = receivePayment.payment;
+                    sale.Change = receivePayment.change;
+
+                    //insert sale detail using SP
+                    try
+                    {
+                        db.Sales.InsertOnSubmit(sale);
+                        db.SubmitChanges();
+                        printReceipt();
+                        prepareNewPosTransaction();
+                    }
+                    catch (Exception ex)
+                    {
+                        string[] messages = ex.Message.Split('\r');
+                        MessageBox.Show(messages[0]);
+                    }
+                }
+            }
+        }
+
+        private void printReceipt()
+        {
+            ReceiptPrinting receiptPrinting= new ReceiptPrinting();
+            receiptPrinting.printPosSale(sale);
+
         }
 
         private void PosGui_FormClosing(object sender, FormClosingEventArgs e)

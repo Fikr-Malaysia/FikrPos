@@ -52,6 +52,9 @@ namespace FikrPos
                     case 4:
                         testPrinter = args[i].Equals("testPrinter");
                         break;
+                    case 5:
+                        isExactPayment = args[i].Equals("exactPayment");
+                        break;
                 }
             }
 
@@ -228,7 +231,9 @@ namespace FikrPos
         public static void LogActivity(LogLevel logLevel, string message, EventLogEntryType eventLogEntryType)
         {
             //TODO : if I need it
-        }        
+        }
+
+        public static bool isExactPayment { get; set; }
     }
 }
 

@@ -73,5 +73,10 @@ namespace FikrPos
         private void StartupForm_Load(object sender, EventArgs e)
         {   
         }
+
+        private void StartupForm_Shown(object sender, EventArgs e)
+        {
+            Hide();
+        }
     }
 }

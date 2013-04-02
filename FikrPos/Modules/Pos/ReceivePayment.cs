@@ -19,11 +19,8 @@ namespace FikrPos.Forms.Pos
         public ReceivePayment()
         {
             InitializeComponent();
-            btnOK.Enabled=false;
+            btnOK.Enabled = false;
         }
-
-     
-
 
         private void btnOK_Click(object sender, EventArgs e)
         {
@@ -38,11 +35,21 @@ namespace FikrPos.Forms.Pos
 
         internal void prepareForm(double totalTransaction)
         {
+            if (Program.isExactPayment)
+            {   
+                oldTxtPayment = payment + "";
+                btnOK.Enabled = true;
+            }
+            else
+            {   
+                oldTxtPayment = "0";
+                btnOK.Enabled = false;
+            }
+            txtPayment.Text = oldTxtPayment;
             this.totalTransaction = totalTransaction;
             txtTotalTransaction.Text = totalTransaction + "";
-            btnOK.Enabled = false;
-            oldTxtPayment = "0";
-            txtPayment.Text = oldTxtPayment;
+            
+            
         }
 
         private void txtPayment_TextChanged(object sender, EventArgs e)
