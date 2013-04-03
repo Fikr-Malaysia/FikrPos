@@ -18,6 +18,7 @@ namespace FikrPos.Forms.Pos
         Sale sale;
         //ArrayList saleDetails;
         PosStateEnum posState;
+        bool initFirstDisplay = true;
         public PosGui()
         {
             InitializeComponent();
@@ -45,6 +46,7 @@ namespace FikrPos.Forms.Pos
             txtQuantity.Text = "";
 
             dataGridView1.Rows.Clear();
+            txtScanCode.Focus();
 
         }
 
@@ -178,11 +180,11 @@ namespace FikrPos.Forms.Pos
             }
             footerTotal = footerSubTotal + footerTax - footerDiscount; ;
 
-            txtQuantity.Text = footerQty + "";
-            txtDiscount.Text = footerDiscount + "";
-            txtTax.Text = footerTax + "";
-            txtSubTotal.Text = footerSubTotal + "";
-            txtTotal.Text = footerTotal + "";
+            txtQuantity.Text = footerQty.ToString();
+            txtDiscount.Text = footerDiscount.ToString("C");
+            txtTax.Text = footerTax.ToString("C");
+            txtSubTotal.Text = footerSubTotal.ToString("C");
+            txtTotal.Text = footerTotal.ToString("C");
 
             sale.Total_Price = footerSubTotal;
             sale.Total_Quantity = footerQty;
@@ -195,20 +197,20 @@ namespace FikrPos.Forms.Pos
         {
             switch (e.KeyCode)
             {
-                case Keys.F1:
+                case Keys.Escape:
                     txtScanCode.Focus();
                     break;
                 case Keys.F2:
                     btnFind.Focus();
                     btnFind_Click(null, null);
                     break;
-                case Keys.Up:
+                /*case Keys.Up:
                     if (dataGridView1.Focused && dataGridView1.SelectedCells != null)//&& dataGridView1.SelectedCells[0].RowIndex == 0
                     {
                         txtScanCode.Focus();
                         e.SuppressKeyPress = false;
                     }
-                    break;
+                    break;*/
                 case Keys.Down:
                     if (txtScanCode.Focused)
                     {
@@ -216,10 +218,26 @@ namespace FikrPos.Forms.Pos
                         dataGridView1.Rows[dataGridView1.Rows.Count-1].Cells[2].Selected = true;
                     }
                     break;
-                case Keys.F12:
-                    receivePayment();
+                case Keys.Delete:
+                    if (dataGridView1.Focused)
+                    {
+                        string productCode = getKey();
+                        if (MessageBox.Show("Delete this sale detail?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            SaleDetail saleDetail = (SaleDetail) hashSaleDetail[productCode];
+                            sale.SaleDetails.Remove(saleDetail);
+                            hashSaleDetail.Remove(productCode);
+                            dataGridView1.Rows.Remove(dataGridView1.CurrentRow);
+                            calculateFooter();
+                        }
+                    }
                     break;
             }
+        }
+
+        private string getKey()
+        {
+            return dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex].Cells[0].Value.ToString();
         }
 
         private void receivePayment()
@@ -237,7 +255,7 @@ namespace FikrPos.Forms.Pos
                 {
                     receivePayment.payment = Convert.ToDouble(sale.Total_Extended_Price);
                 }
-                receivePayment.prepareForm(Convert.ToDouble(txtTotal.Text));
+                receivePayment.prepareForm(Convert.ToDouble(sale.Total_Extended_Price));
                 DialogResult dr = receivePayment.ShowDialog();
                 if (dr == DialogResult.OK)
                 {
@@ -297,6 +315,22 @@ namespace FikrPos.Forms.Pos
         private void txtScanCode_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Cancel transaction?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                prepareNewPosTransaction();
+            }
+        }
+        private void PosGui_Shown(object sender, EventArgs e)
+        {
+            if (initFirstDisplay)
+            {
+                initFirstDisplay = false;
+                txtScanCode.Focus();
+            }
         }
     }
 
