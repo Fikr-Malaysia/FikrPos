@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using FikrPos.Forms.Data;
 using FikrPos.Forms.Data.ProductFolder;
 using FikrPos.Forms.Stock_Control;
+using FikrPos.Forms.Data.SaleFolder;
 
 namespace FikrPos.Forms
 {
@@ -204,6 +205,14 @@ namespace FikrPos.Forms
             form.WindowState = FormWindowState.Maximized;
             form.MdiParent = this;
             form.Show();
+        }
+
+        private void toolSale_Click(object sender, EventArgs e)
+        {
+            DataSale dataSale = new DataSale();
+            dataSale.MdiParent = this;
+            dataSale.WindowState = FormWindowState.Maximized;
+            dataSale.Show();
         }
 
     

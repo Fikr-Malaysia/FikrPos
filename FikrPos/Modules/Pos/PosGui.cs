@@ -65,7 +65,14 @@ namespace FikrPos.Forms.Pos
                     }
                     break;
                 case (char) Keys.Escape:
-                    txtScanCode.Text = "";
+                    if (txtScanCode.Text != "")
+                    {
+                        txtScanCode.Text = "";
+                    }
+                    else
+                    {
+                        if(sale.SaleDetails.Count>0) cancelTransaction();
+                    }
                     break;
             }
         }
@@ -317,7 +324,7 @@ namespace FikrPos.Forms.Pos
 
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        void cancelTransaction()
         {
             if (MessageBox.Show("Cancel transaction?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {

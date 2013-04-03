@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using FikrPos.Business_Logic;
 
 namespace FikrPos.Forms.Stock_Control
 {
@@ -50,7 +51,7 @@ namespace FikrPos.Forms.Stock_Control
             {
                 if (stockAdjustment.stockChange > 0)
                 {
-                    db.InsertInventoryChange(stockAdjustment.inventory.ID, product.ID, stockAdjustment.stockChange, stockAdjustment.currentStock, stockAdjustment.Date, stockAdjustment.Message);
+                    FikrPosBusinessLogic.getInstance().insertInventoryChange(stockAdjustment.inventory.ID, product.ID, stockAdjustment.stockChange, stockAdjustment.currentStock, Convert.ToDateTime(stockAdjustment.Date), stockAdjustment.Message);
                     readData();
                 }
                 else

@@ -57,11 +57,13 @@
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolInventory = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.timerAutoUpdate = new System.Windows.Forms.Timer(this.components);
+            this.toolInventory = new System.Windows.Forms.ToolStripButton();
+            this.toolSale = new System.Windows.Forms.ToolStripButton();
+            this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -113,7 +115,8 @@
             this.userToolStripMenuItem,
             this.productToolStripMenuItem,
             this.companyProfileToolStripMenuItem,
-            this.inventoryListToolStripMenuItem});
+            this.inventoryListToolStripMenuItem,
+            this.salesToolStripMenuItem});
             this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
             this.dataToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.dataToolStripMenuItem.Text = "&Data";
@@ -285,22 +288,13 @@
             // 
             this.toolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolInventory});
+            this.toolInventory,
+            this.toolSale});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(632, 39);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
-            // 
-            // toolInventory
-            // 
-            this.toolInventory.Image = global::FikrPos.Properties.Resources.Custom_Icon_Design_Pretty_Office_3_Inventory_maintenance;
-            this.toolInventory.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolInventory.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolInventory.Name = "toolInventory";
-            this.toolInventory.Size = new System.Drawing.Size(93, 36);
-            this.toolInventory.Text = "Inventory";
-            this.toolInventory.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // statusStrip
             // 
@@ -322,6 +316,31 @@
             // 
             this.timerAutoUpdate.Interval = 1000;
             this.timerAutoUpdate.Tick += new System.EventHandler(this.timerAutoUpdate_Tick);
+            // 
+            // toolInventory
+            // 
+            this.toolInventory.Image = global::FikrPos.Properties.Resources.Custom_Icon_Design_Pretty_Office_3_Inventory_maintenance;
+            this.toolInventory.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolInventory.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolInventory.Name = "toolInventory";
+            this.toolInventory.Size = new System.Drawing.Size(93, 36);
+            this.toolInventory.Text = "Inventory";
+            this.toolInventory.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolSale
+            // 
+            this.toolSale.Image = global::FikrPos.Properties.Resources.Sale;
+            this.toolSale.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolSale.Name = "toolSale";
+            this.toolSale.Size = new System.Drawing.Size(69, 36);
+            this.toolSale.Text = "Sales";
+            this.toolSale.Click += new System.EventHandler(this.toolSale_Click);
+            // 
+            // salesToolStripMenuItem
+            // 
+            this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.salesToolStripMenuItem.Text = "&Sales";
             // 
             // MainWindow
             // 
@@ -387,6 +406,8 @@
         private System.Windows.Forms.Timer timerAutoUpdate;
         private System.Windows.Forms.ToolStripMenuItem checkLatestUpdateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inventoryListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolSale;
+        private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
     }
 }
 

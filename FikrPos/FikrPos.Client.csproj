@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="AppStates.cs" />
     <Compile Include="AutoupdateEngine.cs" />
+    <Compile Include="Business Logic\FikrPosBusinessLogic.cs" />
     <Compile Include="DataManager.cs" />
     <Compile Include="FikrPos.cs">
       <DependentUpon>FikrPos.dbml</DependentUpon>
@@ -90,6 +91,12 @@
     </Compile>
     <Compile Include="Modules\AdministratorPassword.Designer.cs">
       <DependentUpon>AdministratorPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Data\SaleFolder\DataSale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Data\SaleFolder\DataSale.Designer.cs">
+      <DependentUpon>DataSale.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\MainWindow.cs">
       <SubType>Form</SubType>
@@ -200,6 +207,9 @@
     </None>
     <EmbeddedResource Include="Modules\AdministratorPassword.resx">
       <DependentUpon>AdministratorPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Data\SaleFolder\DataSale.resx">
+      <DependentUpon>DataSale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
@@ -320,8 +330,10 @@
     <Content Include="images\cash.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\Sale.ico" />
     <None Include="Resources\Custom-Icon-Design-Pretty-Office-3-Inventory-maintenance.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
