@@ -330,6 +330,9 @@
     <Content Include="images\cash.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\kopen-small.png" />
+    <None Include="Resources\logo_green.png" />
+    <None Include="Resources\kopen_banner.PNG" />
     <None Include="Resources\Sale.ico" />
     <None Include="Resources\Custom-Icon-Design-Pretty-Office-3-Inventory-maintenance.ico" />
   </ItemGroup>

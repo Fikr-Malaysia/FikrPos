@@ -39,6 +39,7 @@
             this.productToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.companyProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,13 +58,13 @@
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolInventory = new System.Windows.Forms.ToolStripButton();
+            this.toolSale = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.timerAutoUpdate = new System.Windows.Forms.Timer(this.components);
-            this.toolInventory = new System.Windows.Forms.ToolStripButton();
-            this.toolSale = new System.Windows.Forms.ToolStripButton();
-            this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.auditRollToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -116,7 +117,8 @@
             this.productToolStripMenuItem,
             this.companyProfileToolStripMenuItem,
             this.inventoryListToolStripMenuItem,
-            this.salesToolStripMenuItem});
+            this.salesToolStripMenuItem,
+            this.auditRollToolStripMenuItem});
             this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
             this.dataToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.dataToolStripMenuItem.Text = "&Data";
@@ -148,6 +150,12 @@
             this.inventoryListToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.inventoryListToolStripMenuItem.Text = "&Inventory List";
             this.inventoryListToolStripMenuItem.Click += new System.EventHandler(this.inventoryListToolStripMenuItem_Click);
+            // 
+            // salesToolStripMenuItem
+            // 
+            this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.salesToolStripMenuItem.Text = "&Sales";
             // 
             // viewMenu
             // 
@@ -296,6 +304,25 @@
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
+            // toolInventory
+            // 
+            this.toolInventory.Image = global::FikrPos.Properties.Resources.Custom_Icon_Design_Pretty_Office_3_Inventory_maintenance;
+            this.toolInventory.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolInventory.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolInventory.Name = "toolInventory";
+            this.toolInventory.Size = new System.Drawing.Size(93, 36);
+            this.toolInventory.Text = "Inventory";
+            this.toolInventory.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolSale
+            // 
+            this.toolSale.Image = global::FikrPos.Properties.Resources.Sale;
+            this.toolSale.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolSale.Name = "toolSale";
+            this.toolSale.Size = new System.Drawing.Size(69, 36);
+            this.toolSale.Text = "Sales";
+            this.toolSale.Click += new System.EventHandler(this.toolSale_Click);
+            // 
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -317,30 +344,11 @@
             this.timerAutoUpdate.Interval = 1000;
             this.timerAutoUpdate.Tick += new System.EventHandler(this.timerAutoUpdate_Tick);
             // 
-            // toolInventory
+            // auditRollToolStripMenuItem
             // 
-            this.toolInventory.Image = global::FikrPos.Properties.Resources.Custom_Icon_Design_Pretty_Office_3_Inventory_maintenance;
-            this.toolInventory.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolInventory.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolInventory.Name = "toolInventory";
-            this.toolInventory.Size = new System.Drawing.Size(93, 36);
-            this.toolInventory.Text = "Inventory";
-            this.toolInventory.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolSale
-            // 
-            this.toolSale.Image = global::FikrPos.Properties.Resources.Sale;
-            this.toolSale.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolSale.Name = "toolSale";
-            this.toolSale.Size = new System.Drawing.Size(69, 36);
-            this.toolSale.Text = "Sales";
-            this.toolSale.Click += new System.EventHandler(this.toolSale_Click);
-            // 
-            // salesToolStripMenuItem
-            // 
-            this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
-            this.salesToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.salesToolStripMenuItem.Text = "&Sales";
+            this.auditRollToolStripMenuItem.Name = "auditRollToolStripMenuItem";
+            this.auditRollToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.auditRollToolStripMenuItem.Text = "&Audit Roll";
             // 
             // MainWindow
             // 
@@ -408,6 +416,7 @@
         private System.Windows.Forms.ToolStripMenuItem inventoryListToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolSale;
         private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem auditRollToolStripMenuItem;
     }
 }
 

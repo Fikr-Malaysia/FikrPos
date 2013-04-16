@@ -17,6 +17,17 @@ namespace FikrPos.Forms
         {
             InitializeComponent();
             Program.graceClose = false;
+            lblCompanyName.Text = AppStates.appInfo.Company_Name;
+            FikrPosDataContext db = Program.getDb();
+            var users = from user in db.AppUsers
+                        orderby user.Username
+                        select user;
+            cboUsername.Items.Clear();
+            foreach (AppUser user in users)
+            {
+                cboUsername.Items.Add(user.Username);
+            }
+            db.Dispose();
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -32,6 +43,7 @@ namespace FikrPos.Forms
             {
                 
                 Program.graceClose = true;
+                Hide();
                 Close();
                 Program.graceClose = false;
                 Program.UserEnter();
@@ -51,7 +63,12 @@ namespace FikrPos.Forms
             if (!Program.graceClose)
             {
                 e.Cancel = Program.Exit();
-            }            
+            }
+            else
+            {
+                e.Cancel = false;
+            }
+            
         }
     }
 }

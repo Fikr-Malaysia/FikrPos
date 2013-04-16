@@ -28,28 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cboUsername = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblCompanyName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::FikrPos.Properties.Resources.pos;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(287, 202);
-            this.pictureBox1.TabIndex = 20;
-            this.pictureBox1.TabStop = false;
-            // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(489, 175);
+            this.btnCancel.Location = new System.Drawing.Point(399, 175);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 3;
@@ -59,7 +51,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(401, 175);
+            this.btnOk.Location = new System.Drawing.Point(311, 175);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 2;
@@ -69,7 +61,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(401, 141);
+            this.txtPassword.Location = new System.Drawing.Point(311, 141);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(163, 20);
@@ -78,7 +70,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(322, 149);
+            this.label2.Location = new System.Drawing.Point(232, 149);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 18;
@@ -89,7 +81,7 @@
             this.cboUsername.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboUsername.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.cboUsername.FormattingEnabled = true;
-            this.cboUsername.Location = new System.Drawing.Point(401, 108);
+            this.cboUsername.Location = new System.Drawing.Point(311, 108);
             this.cboUsername.Name = "cboUsername";
             this.cboUsername.Size = new System.Drawing.Size(163, 21);
             this.cboUsername.TabIndex = 0;
@@ -97,19 +89,38 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(322, 111);
+            this.label1.Location = new System.Drawing.Point(232, 111);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 15;
             this.label1.Text = "Username";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::FikrPos.Properties.Resources.kopen_small;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(206, 202);
+            this.pictureBox1.TabIndex = 20;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lblCompanyName
+            // 
+            this.lblCompanyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCompanyName.Location = new System.Drawing.Point(228, 12);
+            this.lblCompanyName.Name = "lblCompanyName";
+            this.lblCompanyName.Size = new System.Drawing.Size(284, 93);
+            this.lblCompanyName.TabIndex = 21;
+            this.lblCompanyName.Text = "[[CompanyName]]";
             // 
             // Login
             // 
             this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(583, 224);
+            this.ClientSize = new System.Drawing.Size(524, 224);
             this.ControlBox = false;
+            this.Controls.Add(this.lblCompanyName);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
@@ -136,5 +147,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cboUsername;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblCompanyName;
     }
 }

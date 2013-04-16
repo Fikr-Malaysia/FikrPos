@@ -100,10 +100,12 @@ namespace FikrPos
                 Program.graceClose = true;
                 if(Program.userLogin.Role.Equals(Roles.Admin))
                 {
+                    Program.mainWindow.Hide();
                     Program.mainWindow.Close();
                 }
                 else if (Program.userLogin.Role.Equals(Roles.Cashier))
                 {
+                    Program.posGui.Hide();
                     Program.posGui.Close();
                 }
                 Login login = new Login();
