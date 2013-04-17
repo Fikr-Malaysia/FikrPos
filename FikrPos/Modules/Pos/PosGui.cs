@@ -23,8 +23,8 @@ namespace FikrPos.Forms.Pos
         {
             InitializeComponent();
             Program.graceClose = false;
-            lblCompanyName.Text = AppStates.appInfo.Company_Name;
-            lblAddress.Text = AppStates.appInfo.Company_Address;
+            lblCompanyName.Text = Program.appInfo.Company_Name;
+            lblAddress.Text = Program.appInfo.Company_Address;
             dataGridView1.Columns[dataGridView1.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             prepareNewPosTransaction();

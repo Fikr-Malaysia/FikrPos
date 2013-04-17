@@ -10,6 +10,7 @@ using FikrPos.Forms.Data;
 using FikrPos.Forms.Data.ProductFolder;
 using FikrPos.Forms.Stock_Control;
 using FikrPos.Forms.Data.SaleFolder;
+using FikrPos.Modules.Dashboard;
 
 namespace FikrPos.Forms
 {
@@ -22,6 +23,16 @@ namespace FikrPos.Forms
             InitializeComponent();
             Program.graceClose = false;
             Text = Application.ProductName + " version " + Application.ProductVersion;
+            ShowAuditRollForm();
+        }
+
+        private void ShowAuditRollForm()
+        {
+            AuditRollBoard auditRoll = new AuditRollBoard();
+            auditRoll.MdiParent = this;
+            auditRoll.WindowState = FormWindowState.Maximized;
+            auditRoll.Show();
+
         }
 
         public void ShowNewForm(object sender, EventArgs e)
@@ -146,7 +157,7 @@ namespace FikrPos.Forms
 
         private void AdminWindow_Load(object sender, EventArgs e)
         {
-            if (AppStates.appInfo==null || AppStates.appInfo.Company_Name == null)
+            if (Program.appInfo==null || Program.appInfo.Company_Name == null)
             {
                 MessageBox.Show("Please initialize your company data first");
                 
@@ -180,10 +191,10 @@ namespace FikrPos.Forms
         private void timerAutoUpdate_Tick(object sender, EventArgs e)
         {
             timerAutoUpdate.Enabled = false;
-            if (AppStates.appInfo != null)//assume that company name must be initialized!
+            if (Program.appInfo != null)//assume that company name must be initialized!
             {
                 AutoupdateEngine.automaticUpdate = true;
-                checkLatestSoftwareUpdate();
+                //checkLatestSoftwareUpdate();
             }
         }
 
@@ -215,6 +226,9 @@ namespace FikrPos.Forms
             dataSale.Show();
         }
 
-    
+        private void auditRollToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowAuditRollForm();
+        }
     }
 }

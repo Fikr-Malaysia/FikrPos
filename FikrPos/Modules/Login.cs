@@ -17,7 +17,7 @@ namespace FikrPos.Forms
         {
             InitializeComponent();
             Program.graceClose = false;
-            lblCompanyName.Text = AppStates.appInfo.Company_Name;
+            lblCompanyName.Text = Program.appInfo.Company_Name;
             FikrPosDataContext db = Program.getDb();
             var users = from user in db.AppUsers
                         orderby user.Username

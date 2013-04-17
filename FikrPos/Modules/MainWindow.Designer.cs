@@ -40,6 +40,7 @@
             this.companyProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.auditRollToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,7 +65,6 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.timerAutoUpdate = new System.Windows.Forms.Timer(this.components);
-            this.auditRollToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -156,6 +156,13 @@
             this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
             this.salesToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.salesToolStripMenuItem.Text = "&Sales";
+            // 
+            // auditRollToolStripMenuItem
+            // 
+            this.auditRollToolStripMenuItem.Name = "auditRollToolStripMenuItem";
+            this.auditRollToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.auditRollToolStripMenuItem.Text = "&Audit Roll";
+            this.auditRollToolStripMenuItem.Click += new System.EventHandler(this.auditRollToolStripMenuItem_Click);
             // 
             // viewMenu
             // 
@@ -343,12 +350,6 @@
             // 
             this.timerAutoUpdate.Interval = 1000;
             this.timerAutoUpdate.Tick += new System.EventHandler(this.timerAutoUpdate_Tick);
-            // 
-            // auditRollToolStripMenuItem
-            // 
-            this.auditRollToolStripMenuItem.Name = "auditRollToolStripMenuItem";
-            this.auditRollToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.auditRollToolStripMenuItem.Text = "&Audit Roll";
             // 
             // MainWindow
             // 

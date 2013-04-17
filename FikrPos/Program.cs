@@ -15,6 +15,8 @@ namespace FikrPos
 {
     public static class Program
     {
+        public static AppInfo appInfo { get; set; }
+        public static AuditRoll activeRoll { get; set; }
         static string EventLogName = "FikrPos";
         public static StartupForm startupForm;
         public static MainWindow mainWindow;
@@ -68,10 +70,10 @@ namespace FikrPos
             if (forceInit)
             {
                 FikrPosDataContext db = Program.getDb();
-                AppStates.appInfo = db.AppInfos.SingleOrDefault();
-                AppStates.appInfo.IsInit = 1;
-                AppStates.appInfo.Company_Name = null;
-                AppStates.appInfo.Company_Address = null;
+                Program.appInfo = db.AppInfos.SingleOrDefault();
+                Program.appInfo.IsInit = 1;
+                Program.appInfo.Company_Name = null;
+                Program.appInfo.Company_Address = null;
                 db.SubmitChanges();
             }
 

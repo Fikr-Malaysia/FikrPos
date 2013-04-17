@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FikrPos" Class="FikrPosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=COREI3\sqlexpress;Initial Catalog=FikrPos;Integrated Security=True" SettingsObjectName="FikrPos.Properties.Settings" SettingsPropertyName="FikrPosConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=EKOWIBOWO-PC\SQLEXPRESS;Initial Catalog=FikrPos;Integrated Security=True;Pooling=False" SettingsObjectName="FikrPos.Properties.Settings" SettingsPropertyName="FikrPosConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AppInfo" Member="AppInfos">
     <Type Name="AppInfo">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -15,6 +15,8 @@
       <Column Name="Password" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
       <Column Name="Role" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
       <Association Name="AppUser_Sale" Member="Sales" ThisKey="ID" OtherKey="UserId" Type="Sale" />
+      <Association Name="AppUser_AuditRoll" Member="AuditRolls" ThisKey="ID" OtherKey="Started_By" Type="AuditRoll" />
+      <Association Name="AppUser_AuditRoll1" Member="AuditRolls1" ThisKey="ID" OtherKey="Ended_By" Type="AuditRoll" />
     </Type>
   </Table>
   <Table Name="dbo.SaleDetail" Member="SaleDetails">
@@ -96,6 +98,23 @@
       <Column Name="[Current Stock]" Member="Current_Stock" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Inventory_InventoryDetail" Member="Inventory" ThisKey="InventoryID" OtherKey="ID" Type="Inventory" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="SaleDetail_InventoryDetail" Member="SaleDetail" ThisKey="SaleDetailID" OtherKey="ID" Type="SaleDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AuditRoll" Member="AuditRolls">
+    <Type Name="AuditRoll">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[Start of Cash]" Member="Start_of_Cash" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[End of Cash]" Member="End_of_Cash" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[Cash Difference]" Member="Cash_Difference" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[Time Start]" Member="Time_Start" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="[Time Ended]" Member="Time_Ended" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Started By]" Member="Started_By" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Ended By]" Member="Ended_By" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="AuditRoll_AuditRoll" Member="AuditRoll2" ThisKey="id" OtherKey="id" Type="AuditRoll" Cardinality="One" />
+      <Association Name="AppUser_AuditRoll" Member="AppUser" ThisKey="Started_By" OtherKey="ID" Type="AppUser" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="AppUser_AuditRoll1" Member="AppUser1" ThisKey="Ended_By" OtherKey="ID" Type="AppUser" IsForeignKey="true" />
+      <Association Name="AuditRoll_AuditRoll" Member="AuditRoll1" ThisKey="id" OtherKey="id" Type="AuditRoll" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.InsertProduct" Method="InsertProduct">

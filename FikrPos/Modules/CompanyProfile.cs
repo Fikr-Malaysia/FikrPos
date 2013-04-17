@@ -19,28 +19,28 @@ namespace FikrPos.Forms
         private void btnOK_Click(object sender, EventArgs e)
         {
             FikrPosDataContext db = Program.getDb();
-            AppStates.appInfo = db.AppInfos.SingleOrDefault();
-            AppStates.appInfo.Company_Name = txtName.Text;
-            AppStates.appInfo.Company_Address = txtAddress.Text;
+            Program.appInfo = db.AppInfos.SingleOrDefault();
+            Program.appInfo.Company_Name = txtName.Text;
+            Program.appInfo.Company_Address = txtAddress.Text;
             db.SubmitChanges();
             Close();
         }
 
         private void CompanyProfile_Load(object sender, EventArgs e)
         {
-            if (AppStates.appInfo != null)
+            if (Program.appInfo != null)
             {
-                txtName.Text = AppStates.appInfo.Company_Name;
-                txtAddress.Text = AppStates.appInfo.Company_Address;
+                txtName.Text = Program.appInfo.Company_Name;
+                txtAddress.Text = Program.appInfo.Company_Address;
             }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             bool success = false;
-            if (AppStates.appInfo != null)
+            if (Program.appInfo != null)
             {
-                success = AppStates.appInfo.Company_Name != null && AppStates.appInfo.Company_Address != null;
+                success = Program.appInfo.Company_Name != null && Program.appInfo.Company_Address != null;
             }
 
             if (success)

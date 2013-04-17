@@ -34,7 +34,7 @@ namespace FikrPos
             Program.StartupPath = Application.StartupPath;
             DataManager.getInstance().initData();
 
-            if (AppStates.appInfo==null || (AppStates.appInfo!=null && AppStates.appInfo.IsInit == 1))
+            if (Program.appInfo==null || (Program.appInfo!=null && Program.appInfo.IsInit == 1))
             {
                 AdministratorPassword admPwd = new AdministratorPassword();
                 admPwd.ShowDialog();

@@ -74,7 +74,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppStates.cs" />
     <Compile Include="AutoupdateEngine.cs" />
     <Compile Include="Business Logic\FikrPosBusinessLogic.cs" />
     <Compile Include="DataManager.cs" />
@@ -91,6 +90,18 @@
     </Compile>
     <Compile Include="Modules\AdministratorPassword.Designer.cs">
       <DependentUpon>AdministratorPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Dashboard\AuditRollBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Dashboard\AuditRollBoard.Designer.cs">
+      <DependentUpon>AuditRollBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Dashboard\SessionProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Dashboard\SessionProperty.Designer.cs">
+      <DependentUpon>SessionProperty.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\Data\SaleFolder\DataSale.cs">
       <SubType>Form</SubType>
@@ -207,6 +218,12 @@
     </None>
     <EmbeddedResource Include="Modules\AdministratorPassword.resx">
       <DependentUpon>AdministratorPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Dashboard\AuditRollBoard.resx">
+      <DependentUpon>AuditRollBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Dashboard\SessionProperty.resx">
+      <DependentUpon>SessionProperty.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Data\SaleFolder\DataSale.resx">
       <DependentUpon>DataSale.cs</DependentUpon>

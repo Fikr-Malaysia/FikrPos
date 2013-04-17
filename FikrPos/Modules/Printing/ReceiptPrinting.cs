@@ -49,8 +49,8 @@ namespace FikrPos.Modules.Printing
             p.DocumentName = "POS";
             p.PrintPage += delegate(object sender, PrintPageEventArgs e)
             {   
-                printRow(e, 0, AppStates.appInfo.Company_Name);
-                printRow(e, 1, AppStates.appInfo.Company_Address);
+                printRow(e, 0, Program.appInfo.Company_Name);
+                printRow(e, 1, Program.appInfo.Company_Address);
 
                 int i = 2;
                 foreach (SaleDetail sd in sale.SaleDetails)
