@@ -1,4 +1,4 @@
-@echo off
+@echo on
 del source\*.* /S /F /Q
 mkdir source
 copy "..\FikrPos\bin\release\FikrPos.exe" source
