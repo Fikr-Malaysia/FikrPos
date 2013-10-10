@@ -33,6 +33,7 @@ namespace FikrPos
             string password = null;
             bool forceInit = false;
             bool testPrinter = false;
+            bool testJson = true;
 
             //example argument : admin admin noForceInit forceClose testPrinter
             for (int i = 0; i < args.Length; i++)
@@ -80,6 +81,10 @@ namespace FikrPos
             if (testPrinter)
             {
                 Application.Run(new TestPrinter());
+            }
+            else if (testJson)
+            {
+                Application.Run(new FikrPos.Test.TestJson());
             }
             else
             {
