@@ -7,24 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using JsonRequest;
+using FikrPos.Models;
 
 namespace FikrPos.Test
-{
-    public class DailyCashFlow
-    {
-        public string branch_name;
-        public string branch_token;
-        public string company_token;
-       
-        public class CashFlowData
-        {
-            public string day; //todo : DATE
-            public int cash_start_of_day;
-            public int cash_end_of_day;
-        }
-
-        public CashFlowData data;
-    }
+{    
     public partial class TestJson : Form
     {
         string baseurl = "http://10.0.2.2:8888/api";

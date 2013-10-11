@@ -85,6 +85,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FikrPos.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\DailyCashFlow.cs" />
     <Compile Include="Modules\AdministratorPassword.cs">
       <SubType>Form</SubType>
     </Compile>
