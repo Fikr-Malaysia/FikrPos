@@ -22,19 +22,6 @@ namespace FikrPos.Test
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            string daily_cash_flow = @"{ 
-                 'branch_name' : 'Kopjar',
-                 'branch_token' : 'empty token',
-                 'company_token': 'qwerty-82827272',
-                 'data' :
-                   {
-                       'day' : '2013-12-01',
-                       'cash_start_of_day': '100000',
-                       'cash_end_of_day' : '1500000'
-                   } 
-                }";
-
             var test = new DailyCashFlow
             {
                 branch_name = "Kopjar",

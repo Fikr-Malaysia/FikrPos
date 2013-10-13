@@ -32,8 +32,10 @@ namespace FikrPos
             string username = null;
             string password = null;
             bool forceInit = false;
+
+            //shortcut to test code
             bool testPrinter = false;
-            bool testJson = true;
+            bool testJson = false;
 
             //example argument : admin admin noForceInit forceClose testPrinter
             for (int i = 0; i < args.Length; i++)
@@ -64,10 +66,10 @@ namespace FikrPos
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-
             if(username!=null && password!=null)
                 Program.userLogin = Program.Login(username, password);
 
+            //initialisation of company data. Making this application like new
             if (forceInit)
             {
                 FikrPosDataContext db = Program.getDb();
@@ -78,6 +80,8 @@ namespace FikrPos
                 db.SubmitChanges();
             }
 
+
+            //shortcut of all kind of test for new feature/code in this application
             if (testPrinter)
             {
                 Application.Run(new TestPrinter());
@@ -88,6 +92,7 @@ namespace FikrPos
             }
             else
             {
+                // main application
                 startupForm = new StartupForm();
                 startupForm.Visible = false;
                 Application.Run(startupForm);
